@@ -1,3 +1,4 @@
+import { AppComponent } from './app.component';
 import { EditarComponent } from './juegos/editar/editar.component';
 import { CrearComponent } from './juegos/crear/crear.component';
 import { ListarComponent } from './juegos/listar/listar.component';
@@ -6,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: 'listar', component: ListarComponent},
+  {path: 'home', component: AppComponent},
   {path: 'crear', component: CrearComponent},
   {path: 'editar', component: EditarComponent},
 ];

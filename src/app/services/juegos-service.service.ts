@@ -15,4 +15,9 @@ export class JuegosServiceService {
     const api = 'juegos';
     return this.http.get<Juego[]>(this.url + '/' + api);
   }
+
+  nuevoJuego(juego: Juego){
+    const api = 'juegos';
+    return this.http.post<Juego>(this.url + '/' + api, juego);
+  }
 }
