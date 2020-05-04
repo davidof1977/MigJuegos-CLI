@@ -1,6 +1,7 @@
 import { Juego } from './../model/juego';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Partida } from '../model/partida';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,10 @@ export class JuegosServiceService {
   nuevoJuego(juego: Juego){
     const api = 'juegos';
     return this.http.post<Juego>(this.url + '/' + api, juego);
+  }
+
+  getPartidas(juego: string){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/' + juego + '/partidas');
   }
 }

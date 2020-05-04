@@ -4,12 +4,16 @@ import { CrearComponent } from './juegos/crear/crear.component';
 import { ListarComponent } from './juegos/listar/listar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ListarPartidasComponent } from './partidas/listar-partidas/listar-partidas.component';
+import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
 
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
-  {path: 'crear', component: CrearComponent},
-  {path: 'editar', component: EditarComponent},
+  {path: 'crearJuego', component: CrearComponent},
+  {path: 'editarJuego', component: EditarComponent},
+  {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
+  {path: 'crearPartidas', component: CrearPartidasComponent}
 ];
 
 @NgModule({

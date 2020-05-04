@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let juego of juegos"   class="text-center">
-            <td>{{juego.nombre}}</td>
+            <td><a [routerLink]="['/listarPartidas', juego.nombre]">{{juego.nombre}}</a></td>
             <td>{{juego.enColeccion}}</td>
             <td>{{juego.enSeguimiento}}</td>
             <td>{{juego.enListaDeseos}}</td>

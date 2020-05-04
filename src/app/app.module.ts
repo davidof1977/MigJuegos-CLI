@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { ListarComponent } from './juegos/listar/listar.component';
 import { CrearComponent } from './juegos/crear/crear.component';
 import { EditarComponent } from './juegos/editar/editar.component';
+import { ListarPartidasComponent } from './partidas/listar-partidas/listar-partidas.component';
+import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarComponent,
     CrearComponent,
-    EditarComponent
+    EditarComponent,
+    ListarPartidasComponent,
+    CrearPartidasComponent
   ],
   imports: [
     BrowserModule,
