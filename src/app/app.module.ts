@@ -11,6 +11,7 @@ import { CrearComponent } from './juegos/crear/crear.component';
 import { EditarComponent } from './juegos/editar/editar.component';
 import { ListarPartidasComponent } from './partidas/listar-partidas/listar-partidas.component';
 import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas
     CrearComponent,
     EditarComponent,
     ListarPartidasComponent,
-    CrearPartidasComponent
+    CrearPartidasComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

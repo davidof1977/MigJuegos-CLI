@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearPartidasComponent implements OnInit {
 
-  constructor() { }
+  juego: string;
+  constructor(private ruta: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.ruta.paramMap.subscribe(params => this.juego = params.get('juego'));
   }
 
 }

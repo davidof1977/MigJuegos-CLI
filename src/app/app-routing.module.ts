@@ -9,11 +9,12 @@ import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas
 
 
 const routes: Routes = [
-  {path: 'home', component: AppComponent},
-  {path: 'crearJuego', component: CrearComponent},
+  {path: 'listarJuegos', component: ListarComponent},
+  {path: 'nuevoJuego', component: CrearComponent},
   {path: 'editarJuego', component: EditarComponent},
   {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
-  {path: 'crearPartidas', component: CrearPartidasComponent}
+  {path: 'crearPartidas/:juego', component: CrearPartidasComponent},
+  {path: 'listarPartidas', component: ListarPartidasComponent}
 ];
 
 @NgModule({

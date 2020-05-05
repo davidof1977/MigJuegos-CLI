@@ -2,6 +2,7 @@ import { Juego } from './../../model/juego';
 import { JuegosServiceService } from './../../services/juegos-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-listar',
@@ -15,6 +16,10 @@ export class ListarComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getJuegos().subscribe(data => this.juegos = data);
+  }
+
+  nuevaPartida(juego: string){
+    this.router.navigate(['/crearPartidas', juego]);
   }
 
 }
