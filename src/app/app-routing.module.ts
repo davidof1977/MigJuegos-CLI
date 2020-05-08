@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'nuevoJuego', component: CrearComponent},
   {path: 'editarJuego', component: EditarComponent},
   {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
-  {path: 'crearPartidas/:juego', component: CrearPartidasComponent},
+  {path: 'crearPartidas', component: CrearPartidasComponent},
   {path: 'listarPartidas', component: ListarPartidasComponent}
 ];
 

@@ -1,1 +1,21 @@
-<p>{{juego}}</p>
+<div class="continer">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">NUEVA PARTIDA A {{nombreJuego | uppercase}}</h3>
+    </div>
+    <div class="card-body">
+      <form action="">
+        <div class="form group">
+          <label for="fecha">Fecha:</label>
+          <input type="date" [(ngModel)]="partida.fecha" id="fecha" name="fecha" class="form control">
+        </div>
+        <div class="form group">
+          <input type="checkbox" [(ngModel)]="partida.ganador" id="ganador" name= "ganador" class="form control">
+          <label for="coleccion">Ganador</label>
+        </div>
+        <button (click)="guardarPartida()" class="btn btn-success">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+

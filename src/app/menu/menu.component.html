@@ -6,14 +6,34 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/listarJuegos">Listado de juegos <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="/listarPartidas">Listado de partidas</a>
+        <a class="nav-link" href="/listarJuegos">Listado de juegos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/nuevoJuego">Nuevo juego</a>
+      </li>
+      <li>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Listas
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/listarJuegos"  (click)="navegarColeccion()">En mi coleccion</a>
+            <a class="dropdown-item" href="/listarJuegos" (click)="navegarSeguimiento()">En seguimiento</a>
+            <a class="dropdown-item" href="/listarJuegos" (click)="navegarDeseos()">En la lista de deseos</a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Partidas
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/listarPartidas"  (click)="navegarGanadas()">Ganadas</a>
+            <a class="dropdown-item" href="/listarPartidas" (click)="navegarTodas()">Todas</a>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

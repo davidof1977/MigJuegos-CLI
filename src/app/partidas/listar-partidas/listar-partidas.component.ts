@@ -11,17 +11,36 @@ export class ListarPartidasComponent implements OnInit {
 
   partidas: Partida[];
   juego: string;
+  tipo: string;
   constructor(private servicio: JuegosServiceService, private ruta: ActivatedRoute) { }
 
   ngOnInit(): void {
     // tslint:disable-next-line:no-string-literal
     this.ruta.paramMap.subscribe(params => this.juego = params.get('juego'));
-    this.listar(this.juego);
+    this.tipo = localStorage.getItem('tipo');
+    if (this.tipo === 'ganadas'){
+      this.listaPartidasGanadas();
+    }else if (this.tipo === 'todas'){
+      this.listaTodasPartidas();
+    }else{
+      this.listar(this.juego);
+    }
+    localStorage.removeItem('tipo');
   }
 
   listar(juego: string){
-    console.log('Juego ' + juego);
-    this.servicio.getPartidas(juego).subscribe(p => this.partidas = p);
+      this.servicio.getPartidas(juego).subscribe(p => {
+        this.partidas = p;
+        p.forEach(par => par.juego = this.juego);
+      });
+  }
+
+  listaPartidasGanadas(){
+    this.servicio.getPartidasGanadas().subscribe(p => this.partidas = p);
+  }
+
+  listaTodasPartidas(){
+    this.servicio.getTodasPartidas().subscribe(p => this.partidas = p);
   }
 
 }

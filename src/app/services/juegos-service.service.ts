@@ -17,7 +17,22 @@ export class JuegosServiceService {
     return this.http.get<Juego[]>(this.url + '/' + api);
   }
 
-  nuevoJuego(juego: Juego){
+  getJuegosEnColeccion(){
+    const api = 'juegos/coleccion';
+    return this.http.get<Juego[]>(this.url + '/' + api);
+  }
+
+  getJuegosSeguimiento(){
+    const api = 'juegos/seguimiento';
+    return this.http.get<Juego[]>(this.url + '/' + api);
+  }
+
+  getJuegosListaDeseos(){
+    const api = 'juegos/listaDeseos';
+    return this.http.get<Juego[]>(this.url + '/' + api);
+  }
+
+  guardarJuego(juego: Juego){
     const api = 'juegos';
     return this.http.post<Juego>(this.url + '/' + api, juego);
   }
@@ -25,5 +40,30 @@ export class JuegosServiceService {
   getPartidas(juego: string){
     const api = 'juegos';
     return this.http.get<Partida[]>(this.url + '/' + api + '/' + juego + '/partidas');
+  }
+
+  getPartidasJuegoGanadas(juego: string){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/' + juego + '/ganadas');
+  }
+
+  getJuego(nombre: string){
+    const api = 'juegos';
+    return this.http.get<Juego>(this.url + '/' + api + '/' + nombre);
+  }
+
+  getTodasPartidas(){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas');
+  }
+
+  getPartidasGanadas(){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/ganadas');
+  }
+
+  getPartidasMes(mes: string){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/' + mes);
   }
 }

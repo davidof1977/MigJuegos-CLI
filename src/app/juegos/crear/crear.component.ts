@@ -11,9 +11,13 @@ import { Router } from '@angular/router';
 export class CrearComponent implements OnInit {
 
   juego: Juego = new Juego();
-  constructor(private router: Router, private service: JuegosServiceService) { }
+  constructor(private router: Router, private servicio: JuegosServiceService) { }
 
   ngOnInit(): void {
+    const nombreJuego = localStorage.getItem('nombreJuego');
+    this.servicio.getJuego(nombreJuego).subscribe(j => {
+      this.juego = j;
+    });
   }
 
   guardar(){
@@ -26,7 +30,7 @@ export class CrearComponent implements OnInit {
     if (!this.juego.enListaDeseos){
       this.juego.enListaDeseos = false;
     }
-    this.service.nuevoJuego(this.juego).subscribe(data => {
+    this.servicio.guardarJuego(this.juego).subscribe(data => {
       alert('Nuevo juego creado');
       this.router.navigate(['home']);
     });
