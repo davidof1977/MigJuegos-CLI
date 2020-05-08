@@ -1,3 +1,4 @@
+import { BuscarComponent } from './juegos/buscar/buscar.component';
 import { AppComponent } from './app.component';
 import { EditarComponent } from './juegos/editar/editar.component';
 import { CrearComponent } from './juegos/crear/crear.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'editarJuego', component: EditarComponent},
   {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
   {path: 'crearPartidas', component: CrearPartidasComponent},
-  {path: 'listarPartidas', component: ListarPartidasComponent}
+  {path: 'listarPartidas', component: ListarPartidasComponent},
+  {path: 'buscarJuego', component: BuscarComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,8 @@
+import { BuscarComponent } from './juegos/buscar/buscar.component';
 import { JuegosServiceService } from './services/juegos-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,13 +22,15 @@ import { MenuComponent } from './menu/menu.component';
     EditarComponent,
     ListarPartidasComponent,
     CrearPartidasComponent,
-    MenuComponent
+    MenuComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [JuegosServiceService],
   bootstrap: [AppComponent]

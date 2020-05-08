@@ -17,6 +17,11 @@ export class JuegosServiceService {
     return this.http.get<Juego[]>(this.url + '/' + api);
   }
 
+  buscarJuegos(regex: string){
+    const api = 'juegos/buscar';
+    return this.http.get<Juego[]>(this.url + '/' + api + '/' + regex);
+  }
+
   getJuegosEnColeccion(){
     const api = 'juegos/coleccion';
     return this.http.get<Juego[]>(this.url + '/' + api);
