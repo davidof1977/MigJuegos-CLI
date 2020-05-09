@@ -6,9 +6,14 @@
     <div class="card-body">
       <form action="">
         <div class="form group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" [(ngModel)]="juego.nombre" id="nombre" aria-describedby="nombreHelp" class="form control" style="width: 25%;">
-          <small id="nombreHelp" class="form-text text-muted">Escriba el nombre del juego que quiera anadir a su coleccion.</small>
+          <label class="form-text form control" for="nombre">Nombre:</label>
+          <!--input type="text" [(ngModel)]="juego.nombre" id="nombre" aria-describedby="nombreHelp" class="form control" style="width: 25%;" -->
+          <input type="text" [(ngModel)]="juego.nombre" id="nombre" name="nombre" class="form control" style="width: 25%;" [formControl]="controlNombre">
+          <small id="nombreHelp" *ngIf="controlNombre.hasError('required') && controlNombre.dirty" class="text-danger">Este campo es obligatorio.</small>
+        </div>
+        <div class="form group">
+          <label class="form-text form control" for="img">Imagen:</label>
+          <input type="text" [(ngModel)]="juego.img" id="img" name="img"  class="form control" style="width: 25%;" >
         </div>
         <div class="form group">
           <input type="checkbox" [(ngModel)]="juego.enColeccion" id="coleccion" name= "coleccion" class="form control">
@@ -22,7 +27,7 @@
           <input type="checkbox" [(ngModel)]="juego.enListaDeseos" id="deseos" name="deseos" class="form control">
           <label for="deseos">En wishlist</label>
         </div>
-        <button (click)="guardar()" class="btn btn-success">Guardar</button>
+        <button (click)="guardar()" [disabled]="controlNombre.invalid" class="btn btn-success">Guardar</button>
       </form>
     </div>
   </div>

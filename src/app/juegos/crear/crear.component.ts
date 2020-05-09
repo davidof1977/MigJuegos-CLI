@@ -2,6 +2,7 @@ import { Juego } from './../../model/juego';
 import { JuegosServiceService } from './../../services/juegos-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear',
@@ -10,14 +11,18 @@ import { Router } from '@angular/router';
 })
 export class CrearComponent implements OnInit {
 
+  controlNombre = new FormControl('', [Validators.required]);
   juego: Juego = new Juego();
   constructor(private router: Router, private servicio: JuegosServiceService) { }
 
   ngOnInit(): void {
     const nombreJuego = localStorage.getItem('nombreJuego');
-    this.servicio.getJuego(nombreJuego).subscribe(j => {
-      this.juego = j;
-    });
+    if(nombreJuego != null){
+      this.servicio.getJuego(nombreJuego).subscribe(j => {
+        this.juego = j;
+      });
+    }
+
   }
 
   guardar(){
@@ -30,9 +35,9 @@ export class CrearComponent implements OnInit {
     if (!this.juego.enListaDeseos){
       this.juego.enListaDeseos = false;
     }
+    this.juego.img = 'assets/img/' + this.juego.img;
     this.servicio.guardarJuego(this.juego).subscribe(data => {
       alert('Nuevo juego creado');
-      this.router.navigate(['home']);
     });
   }
 }

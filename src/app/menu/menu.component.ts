@@ -32,4 +32,9 @@ export class MenuComponent implements OnInit {
   navegarTodas(){
     localStorage.setItem('tipo', 'todas');
   }
+
+  navegarNuevoJuego(){
+    localStorage.removeItem('nombreJuego');
+  }
+
 }

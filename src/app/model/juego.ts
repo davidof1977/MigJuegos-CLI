@@ -7,4 +7,5 @@ export class Juego{
   enSeguimiento: boolean;
   enListaDeseos: boolean;
   partidas: Partida[];
+  img: string;
 }
