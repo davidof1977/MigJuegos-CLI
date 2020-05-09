@@ -33,7 +33,7 @@ export class JuegosServiceService {
   }
 
   getJuegosListaDeseos(){
-    const api = 'juegos/listaDeseos';
+    const api = 'juegos/listadeseos';
     return this.http.get<Juego[]>(this.url + '/' + api);
   }
 
@@ -67,7 +67,7 @@ export class JuegosServiceService {
     return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/ganadas');
   }
 
-  getPartidasMes(mes: string){
+  getPartidasMes(mes: number){
     const api = 'juegos';
     return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/' + mes);
   }
