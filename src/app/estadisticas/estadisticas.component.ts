@@ -34,7 +34,24 @@ export class EstadisticasComponent implements OnInit {
         }
       });
     });
-
+  }
+  navegarColeccion(){
+    localStorage.setItem('origenPeticion', 'listadoColeccion');
   }
 
+  navegarDeseos(){
+    localStorage.setItem('origenPeticion', 'listadoDeseos');
+  }
+
+  navegarSeguimiento(){
+    localStorage.setItem('origenPeticion', 'listadoSeguimiento');
+  }
+
+  navegarGanadas(){
+    localStorage.setItem('tipo', 'ganadas');
+  }
+
+  navegarTodas(){
+    localStorage.setItem('tipo', 'todas');
+  }
 }

@@ -1,34 +1,35 @@
-<div class="continer">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">ANADIR JUEGO</h3>
-    </div>
-    <div class="card-body">
-      <form action="">
+<div class="continer mt-3">
+  <div class="d-flex justify-content-center" >
+  <div class="col-sm-6">
+  <div class="card" style="width: 30rem;">
+      <div class="card-body mx-auto" >
         <div class="form group">
           <label class="form-text form control" for="nombre">Nombre:</label>
-          <!--input type="text" [(ngModel)]="juego.nombre" id="nombre" aria-describedby="nombreHelp" class="form control" style="width: 25%;" -->
-          <input type="text" [(ngModel)]="juego.nombre" id="nombre" name="nombre" class="form control" style="width: 25%;" [formControl]="controlNombre">
+          <input type="text" [(ngModel)]="juego.nombre" id="nombre" name="nombre"  class="form control" style="width: 100%;" [formControl]="controlNombre">
           <small id="nombreHelp" *ngIf="controlNombre.hasError('required') && controlNombre.dirty" class="text-danger">Este campo es obligatorio.</small>
         </div>
         <div class="form group">
           <label class="form-text form control" for="img">Imagen:</label>
-          <input type="text" [(ngModel)]="juego.img" id="img" name="img"  class="form control" style="width: 25%;" >
+          <input type="text" [(ngModel)]="juego.img" id="img" name="img"  class="form control" style="width: 100%;" >
         </div>
-        <div class="form group">
-          <input type="checkbox" [(ngModel)]="juego.enColeccion" id="coleccion" name= "coleccion" class="form control">
-          <label for="coleccion">En la coleccion</label>
+        <div class="form-check form-check-inline  mt-3">
+          <input type="checkbox" [(ngModel)]="juego.enColeccion" id="coleccion" name= "coleccion" class="form-check-input">
+          <label for="coleccion" class="form-check-label">En la coleccion</label>
         </div>
-        <div class="form group">
-          <input type="checkbox" [(ngModel)]="juego.enSeguimiento" id="seguimiento" name= "seguimiento" class="form control">
-          <label for="seguimiento">En seguimiento</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" [(ngModel)]="juego.enSeguimiento" id="seguimiento" name= "seguimiento" class="form-check-input">
+          <label for="seguimiento" class="form-check-label">En seguimiento</label>
         </div>
-        <div class="form group">
-          <input type="checkbox" [(ngModel)]="juego.enListaDeseos" id="deseos" name="deseos" class="form control">
-          <label for="deseos">En wishlist</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" [(ngModel)]="juego.enListaDeseos" id="deseos" name="deseos" class="form-check-input">
+          <label for="deseos" class="form-check-label">En wishlist</label>
         </div>
-        <button (click)="guardar()" [disabled]="controlNombre.invalid" class="btn btn-success">Guardar</button>
-      </form>
+        <div class="d-flex justify-content-center mt-3" >
+          <button (click)="guardar()" [disabled]="controlNombre.invalid" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </div>
+

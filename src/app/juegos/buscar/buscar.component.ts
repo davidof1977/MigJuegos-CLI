@@ -44,6 +44,6 @@ export class BuscarComponent implements OnInit {
 
   editarJuego(juego: string){
     localStorage.setItem('nombreJuego', juego);
-    this.router.navigate(['/nuevoJuego']);
+    this.router.navigate(['/editarJuego']);
   }
 }

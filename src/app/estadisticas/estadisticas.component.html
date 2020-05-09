@@ -1,21 +1,25 @@
-<div class="d-flex justify-content-center mt-3">
-<div class="card" style="width: 50rem;">
+<div class="d-flex justify-content-center mt-3" >
+<div class="card border border-primary" style="width: 65rem;">
   <img class="card-img-top" src="assets/img/JuegosDeMesa.jpg" alt="Card image cap">
   <div class="card-body">
-    <h2 class="card-title">Estadistica de juegos y partidas</h2>
-    <div>
-      <span class="text-primary h5 mr-4">Juegos en mi coleccion <span class="badge badge-info">{{numJuegosColeccion}}</span></span>
-      <span class="text-primary h5 mr-4">Juegos en seguimiento <span class="badge badge-info">{{numJuegosSeguimiento}}</span></span>
-      <span class="text-primary h5 mr-4">Lista de deseos <span class="badge badge-info">{{numJuegosDeseos}}</span></span>
+    <h2 class="card-title d-flex justify-content-center ">Estadistica de juegos y partidas</h2>
+    <div class="container" >
+      <div class="row">
+        <a href="/listarJuegos"  (click)="navegarColeccion()" class="text-primary text-decoration-none h5 col">Juegos en mi coleccion <span class="badge badge-info">{{numJuegosColeccion}}</span></a>
+        <a href="/listarJuegos" (click)="navegarSeguimiento()" class="text-primary text-decoration-none h5 col">Juegos en seguimiento <span class="badge badge-info">{{numJuegosSeguimiento}}</span></a>
+        <a href="/listarJuegos" (click)="navegarDeseos()" class="text-primary text-decoration-none h5 col">Lista de deseos <span class="badge badge-info">{{numJuegosDeseos}}</span></a>
+      </div>
+    <div class="row">
+      <a href="/listarPartidas" (click)="navegarTodas()" class="text-primary text-decoration-none h5 col">Partidas jugadas <span class="badge badge-info">{{numPartidas}}</span></a>
+      <a href="/listarPartidas"  (click)="navegarGanadas()" class="text-primary text-decoration-none h5 col">Partidas ganadas <span class="badge badge-info">{{numVictorias}}</span></a>
+      <span class="text-primary h5 col"></span>
     </div>
-    <div class="mt-2">
-      <span class="text-primary h5 mr-4">Partidas jugadas <span class="badge badge-info">{{numPartidas}}</span></span>
-      <span class="text-primary h5 mr-4">Partidas ganadas <span class="badge badge-info">{{numVictorias}}</span></span>
+    <div class="row">
+      <span class="text-primary h5 col">Partidas jugadas en este mes <span class="badge badge-info">{{numPartidasUltimoMes}}</span></span>
+      <span class="text-primary h5 col">Partidas ganadas en este mes <span class="badge badge-info">{{numVictoriasUltimoMes}}</span></span>
+      <span class="text-primary h5 col"></span>
     </div>
-    <div class="mt-2">
-      <span class="text-primary h5 mr-4">Partidas jugadas en este mes <span class="badge badge-info">{{numPartidasUltimoMes}}</span></span>
-      <span class="text-primary h5 mr-4">Partidas ganadas en este mes <span class="badge badge-info">{{numVictoriasUltimoMes}}</span></span>
-    </div>
+  </div>
   </div>
 </div>
 </div>

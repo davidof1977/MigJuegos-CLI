@@ -24,7 +24,7 @@ export class ListarComponent implements OnInit {
     }else if (this.origenPeticion === 'listadoSeguimiento'){
       this.service.getJuegosSeguimiento().subscribe(data => this.juegos = data);
     }else if (this.origenPeticion === 'listadoDeseos'){
-      this.service.getJuegosEnColeccion().subscribe(data => this.juegos = data);
+      this.service.getJuegosListaDeseos().subscribe(data => this.juegos = data);
     }else{
       this.service.getJuegos().subscribe(data => this.juegos = data);
     }

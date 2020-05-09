@@ -19,9 +19,9 @@
           <tr *ngFor="let juego of juegos"   class="text-center">
             <td><img [src]=juego.img class="img-fluid img-thumbnail" style="max-width:50px;"></td>
             <td><a [routerLink]="['/listarPartidas', juego.nombre]">{{juego.nombre}}</a></td>
-            <td>{{juego.enColeccion}}</td>
-            <td>{{juego.enSeguimiento}}</td>
-            <td>{{juego.enListaDeseos}}</td>
+            <td><input type="checkbox" disabled=true [checked]=juego.enColeccion /> </td>
+            <td><input type="checkbox" disabled=true [checked]=juego.enSeguimiento /></td>
+            <td><input type="checkbox" disabled=true [checked]=juego.enListaDeseos /></td>
             <td>
               <button (click)="editarJuego(juego.nombre)" class="btn btn-success">Editar</button>
               <button (click)="nuevaPartida(juego.nombre)"  class="btn btn-success" style="margin-left: 10px;">Nueva partida</button>
