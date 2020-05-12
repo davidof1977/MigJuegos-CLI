@@ -1,3 +1,4 @@
+import { PrincipalComponent } from './cuadromando/principal/principal.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { BuscarComponent } from './juegos/buscar/buscar.component';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'listarPartidas', component: ListarPartidasComponent},
   {path: 'buscarJuego', component: BuscarComponent},
   {path: 'estadisticas', component: EstadisticasComponent},
+  {path: 'cuadromando', component: PrincipalComponent},
   { path: '**', redirectTo: 'estadisticas', pathMatch: 'full' }
 ];
 

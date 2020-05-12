@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="container-fluid">
+      <img *ngIf="juego == undefined;else elseBlock"  class="img-fluid" src="assets/img/JuegosDeMesa.jpg" />
+      <ng-template #elseBlock><img class="img-fluid" [src]=juego.img /></ng-template>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      Acumulado
+    </div>
+    <div class="col">
+      Anual
+    </div>
+  </div>
+</div>

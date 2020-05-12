@@ -16,7 +16,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let juego of juegos"   class="text-center">
+          <tr *ngFor="let juego of juegos | paginate: { id: 'pgListaJugos',
+          itemsPerPage: pageSize,
+          currentPage: p
+          }"    class="text-center">
             <td><img [src]=juego.img class="img-fluid img-thumbnail" style="max-width:50px;"></td>
             <td><a [routerLink]="['/listarPartidas', juego.nombre]">{{juego.nombre}}</a></td>
             <td><input type="checkbox" disabled=true [checked]=juego.enColeccion /> </td>
@@ -30,6 +33,7 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls id="pgListaJugos" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

@@ -9,6 +9,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ListarPartidasComponent implements OnInit {
 
+  p = 1;
+  pageSize = 5;
   partidas: Partida[];
   juego: string;
   tipo: string;

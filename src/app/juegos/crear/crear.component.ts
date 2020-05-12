@@ -2,7 +2,7 @@ import { Juego } from './../../model/juego';
 import { JuegosServiceService } from './../../services/juegos-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-crear',
@@ -11,9 +11,17 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CrearComponent implements OnInit {
 
-  controlNombre = new FormControl('', [Validators.required]);
+  formGrupo: FormGroup;
+  // controlNombre = new FormControl('', [Validators.required]);
   juego: Juego = new Juego();
-  constructor(private router: Router, private servicio: JuegosServiceService) { }
+
+  constructor(private router: Router, private servicio: JuegosServiceService) {
+    this.formGrupo = new FormGroup({
+      nombre: new FormControl('', [Validators.required]),
+      rutaImg: new FormControl(''),
+      lista: new FormControl('', [Validators.required])
+    });
+  }
 
   ngOnInit(): void {
     const nombreJuego = localStorage.getItem('nombreJuego');
@@ -25,19 +33,24 @@ export class CrearComponent implements OnInit {
 
   }
 
-  guardar(){
-    if (!this.juego.enColeccion){
-      this.juego.enColeccion = false;
+  guardar(event: Event){
+    event.preventDefault();
+    if(!this.formGrupo.invalid){
+      this.juego.img = 'assets/img/' + this.formGrupo.get('rutaImg').value;
+      this.juego.nombre = this.formGrupo.get('nombre').value;
+      if (this.formGrupo.get('lista').value === 'coleccion'){
+        this.juego.enColeccion = true;
+      }
+      else if (this.formGrupo.get('lista').value === 'seguimiento'){
+        this.juego.enSeguimiento = true;
+      }else if (this.formGrupo.get('lista').value === 'deseos'){
+        this.juego.enListaDeseos = true;
+      }
+      this.servicio.guardarJuego(this.juego).subscribe(data => {
+        alert('Nuevo juego creado');
+      });
+    }else{
+      this.formGrupo.markAllAsTouched();
     }
-    if (!this.juego.enSeguimiento){
-      this.juego.enSeguimiento = false;
-    }
-    if (!this.juego.enListaDeseos){
-      this.juego.enListaDeseos = false;
-    }
-    this.juego.img = 'assets/img/' + this.juego.img;
-    this.servicio.guardarJuego(this.juego).subscribe(data => {
-      alert('Nuevo juego creado');
-    });
   }
 }

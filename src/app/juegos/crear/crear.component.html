@@ -3,30 +3,35 @@
   <div class="col-sm-6">
   <div class="card" style="width: 30rem;">
       <div class="card-body mx-auto" >
+        <form [formGroup]="formGrupo" (ngSubmit)="guardar($event)" >
         <div class="form group">
           <label class="form-text form control" for="nombre">Nombre:</label>
-          <input type="text" [(ngModel)]="juego.nombre" id="nombre" name="nombre"  class="form control" style="width: 100%;" [formControl]="controlNombre">
-          <small id="nombreHelp" *ngIf="controlNombre.hasError('required') && controlNombre.dirty" class="text-danger">Este campo es obligatorio.</small>
+          <input type="text" id="nombre" name="nombre"  class="form control" style="width: 100%;" formControlName="nombre">
+          <small id="nombreHelp" *ngIf="formGrupo.get('nombre').hasError('required') && formGrupo.touched" class="text-danger">Este campo es obligatorio.</small>
         </div>
         <div class="form group">
-          <label class="form-text form control" for="img">Imagen:</label>
-          <input type="text" [(ngModel)]="juego.img" id="img" name="img"  class="form control" style="width: 100%;" >
+          <label class="form-text form control" for="rutaImg">Imagen:</label>
+          <input type="text" id="img" name="rutaImg" formControlName="rutaImg"  class="form control" style="width: 100%;" >
         </div>
         <div class="form-check form-check-inline  mt-3">
-          <input type="checkbox" [(ngModel)]="juego.enColeccion" id="coleccion" name= "coleccion" class="form-check-input">
-          <label for="coleccion" class="form-check-label">En la coleccion</label>
+          <input type="radio" value="coleccion" name= "lista" formControlName="lista" class="form-check-input">
+          <label for="" class="form-check-label">En la coleccion</label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="checkbox" [(ngModel)]="juego.enSeguimiento" id="seguimiento" name= "seguimiento" class="form-check-input">
-          <label for="seguimiento" class="form-check-label">En seguimiento</label>
+          <input type="radio" value="seguimiento" name= "lista" formControlName="lista" class="form-check-input">
+          <label for="" class="form-check-label">En seguimiento</label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="checkbox" [(ngModel)]="juego.enListaDeseos" id="deseos" name="deseos" class="form-check-input">
-          <label for="deseos" class="form-check-label">En wishlist</label>
+          <input type="radio" value="deseos" name= "lista" formControlName="lista" class="form-check-input">
+          <label for="" class="form-check-label">En wishlist</label>
         </div>
+        <small *ngIf="formGrupo.get('lista').hasError('required') && formGrupo.touched" class="text-danger">Debe seleecionar alguna lista.</small>
         <div class="d-flex justify-content-center mt-3" >
-          <button (click)="guardar()" [disabled]="controlNombre.invalid" class="btn btn-success">Guardar</button>
+          <button type="submit"  class="btn btn-success"
+          [class.btn-succes]="!formGrupo.invalid"
+          [class.btn-danger]="formGrupo.invalid">Guardar</button>
       </div>
+    </form>
     </div>
   </div>
     </div>

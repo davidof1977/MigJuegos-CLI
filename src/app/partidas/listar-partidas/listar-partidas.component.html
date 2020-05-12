@@ -1,25 +1,29 @@
 <div class="continer">
   <div class="card">
     <div class="card-header">
-      <h3 class="text-center">LISTADO DE PARTIDAS {{tipo | uppercase}}</h3>
+      <h3 class="text-center">LISTADO DE PARTIDAS </h3>
     </div>
     <div class="card-body">
       <table class="table table-hover">
         <thead>
           <tr class="text-center">
-            <th>Juego</th>
-            <th>Fecha</th>
-            <th>Ganador</th>
+            <th class="text-left">Juego</th>
+            <th class="text-left">Fecha</th>
+            <th class="text-left">Ganador</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let partida of partidas"   class="text-center">
-            <td>{{partida.juego}}</td>
-            <td>{{partida.fecha}}</td>
-            <td>{{partida.ganador}}</td>
+          <tr *ngFor="let partida of partidas | paginate: { id: 'foo',
+          itemsPerPage: pageSize,
+          currentPage: p
+          }"   class="text-center">
+            <td class="text-primary text-left">{{partida.juego}}</td>
+            <td class="text-primary text-left">{{partida.fecha | date:'fullDate':'+0034':'es'}}</td>
+            <td class="text-primary text-left"><input type="checkbox" [checked]=partida.ganador disabled=true /></td>
           </tr>
         </tbody>
       </table>
+      <pagination-controls id="foo" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

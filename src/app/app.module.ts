@@ -14,6 +14,16 @@ import { ListarPartidasComponent } from './partidas/listar-partidas/listar-parti
 import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
 import { MenuComponent } from './menu/menu.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PrincipalComponent } from './cuadromando/principal/principal.component';
+import { CuerpoComponent } from './cuadromando/cuerpo/cuerpo.component';
+import { MargenComponent } from './cuadromando/margen/margen.component';
+import { PieComponent } from './cuadromando/pie/pie.component';
+import { ServicioMensajeriaService } from './services/servicio-mensajeria.service';
+
+registerLocaleData(localeES, 'es');
 
 @NgModule({
   declarations: [
@@ -25,16 +35,21 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
     CrearPartidasComponent,
     MenuComponent,
     BuscarComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    PrincipalComponent,
+    CuerpoComponent,
+    MargenComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
-  providers: [JuegosServiceService],
+  providers: [JuegosServiceService, ServicioMensajeriaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,6 +12,8 @@ export class ListarComponent implements OnInit {
 
   origenPeticion: string;
   juegos: Juego[];
+  p = 1;
+  pageSize = 5;
 
   constructor(private service: JuegosServiceService, private router: Router) { }
 
