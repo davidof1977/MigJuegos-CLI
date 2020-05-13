@@ -14,10 +14,14 @@ import { ServicioMensajeriaService } from 'src/app/services/servicio-mensajeria.
 export class MargenComponent implements OnInit {
 
   buscarControl = new FormControl('');
+  mes = new FormControl('');
   juegos: Juego[];
   constructor(private servicio: JuegosServiceService, private mensajeria: ServicioMensajeriaService) { }
 
   ngOnInit(): void {
+    const fechaActual = new Date();
+    const month = '0' + (fechaActual.getMonth() + 1);
+    this.mes.setValue(fechaActual.getFullYear() + '-' + month.slice(-2));
     this.buscarControl.valueChanges
     .pipe(debounceTime(200))
     .subscribe(value => {
@@ -32,8 +36,11 @@ export class MargenComponent implements OnInit {
   }
 
   dameJuego(nombre: string){
-    this.mensajeria.sendMessage(nombre);
+    this.mensajeria.sendNombreJuego(nombre);
   }
 
+  emitirMes(){
+    this.mensajeria.sendMes(this.mes.value);
+  }
 
 }

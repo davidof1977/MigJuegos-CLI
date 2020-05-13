@@ -6,17 +6,27 @@ import { Subject, Observable } from 'rxjs';
 })
 export class ServicioMensajeriaService {
 
-  private subject = new Subject<string>();
+  private nombre = new Subject<string>();
+  private mes = new Subject<string>();
 
-    sendMessage(message: string) {
-        this.subject.next(message);
+    sendNombreJuego(nombre: string) {
+      this.nombre.next(nombre);
+    }
+
+    sendMes(mes: string) {
+      this.mes.next(mes);
     }
 
     clearMessages() {
-        this.subject.next();
+        this.nombre.next();
+        this.mes.next();
     }
 
-    getMessage(): Observable<any> {
-        return this.subject.asObservable();
+    getNombre(): Observable<string> {
+        return this.nombre.asObservable();
     }
+
+    getMes(): Observable<string> {
+      return this.mes.asObservable();
+  }
 }
