@@ -37,6 +37,7 @@ export class MargenComponent implements OnInit {
 
   dameJuego(nombre: string){
     this.mensajeria.sendNombreJuego(nombre);
+    this.mensajeria.sendMes(this.mes.value);
   }
 
   emitirMes(){

@@ -1,15 +1,121 @@
-<div class="container">
+
   <div class="row">
     <div class="col">
-      <div class="container-fluid">
-      <img class="img-fluid" src="assets/img/JuegosDeMesa.jpg" />
-      <!--ng-template #elseBlock><img class="img-fluid" [src]=juego.img /></!--ng-template-->
+      <div class="container-fluid text-center">
+        <img *ngIf="juego == undefined else elseBlock" class="img-fluid" src="assets/img/JuegosDeMesa.jpg" >
+        <ng-template #elseBlock><h1 *ngIf="juego != undefined" class="text-center text-primary mt-3"  >{{juego.nombre | uppercase}}</h1></ng-template>
     </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
+  <div class="row ml-2 mr-2">
+    <div class="col border rounded">
+      <h3 class="text-center">{{anio}}</h3>
       <div *ngIf="juego!=undefined"  class="card-deck">
+        <div class="card text-white bg-primary mb-3" >
+
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icon_meeple.png" class="card-img" >
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-center">
+                  <h2>{{partidasJugadasAnioActual}}</h2>
+                  <p class="card-text text-right"><small>Partidas jugadas</small></p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icono_pv.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-">
+                  <h2>{{partidasGanadasAnioActual}}</h2>
+                </span>
+                <p class="card-text"><small>Partidas ganadas</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icono_estadistica.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-">
+                  <h2>{{puntosMaxAnioActual}}</h2>
+                </span>
+                <p class="card-text"><small>Máxima puntuacón</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col border rounded ml-2">
+      <h3 class="text-center">{{mes}}</h3>
+      <div *ngIf="juego!=undefined"  class="card-deck">
+        <div class="card text-white bg-primary mb-3" >
+
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icon_meeple.png" class="card-img" >
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-center">
+                  <h2>{{partidasJugadasMesActual}}</h2>
+                  <p class="card-text text-right"><small>Partidas jugadas</small></p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icono_pv.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-">
+                  <h2>{{partidasGanadasMesActual}}</h2>
+                </span>
+                <p class="card-text"><small>Partidas ganadas</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="assets/img/icono_estadistica.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-">
+                  <h2>{{puntosMaxMesActual}}</h2>
+                </span>
+                <p class="card-text"><small>Máxima puntuacón</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row ml-2 mr-2 mt-2">
+    <div class="col border rounded mx-auto">
+      <h3 class="text-center">Histórico</h3>
+      <div *ngIf="juego!=undefined"  class="card-deck mx-auto" style="width: 70rem;">
         <div class="card text-white bg-primary mb-3" >
           <div class="row no-gutters">
             <div class="col-md-4">
@@ -40,38 +146,17 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <div class="col">
-      <div *ngIf="juego!=undefined"  class="card-deck">
-        <div class="card text-white bg-primary mb-3" >
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="assets/img/icon_meeple.png" class="card-img" >
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <span class="text-center">
-                  <h2>{{partidasJugadasActual}}</h2>
-                  <p class="card-text text-right"><small>Partidas jugadas</small></p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="card text-white bg-primary mb-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <img src="assets/img/icono_pv.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
+              <img src="assets/img/icono_estadistica.jpg" class="card-img img-fluid img-thumbnail" style="max-width:50px;">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <span class="text-">
-                  <h2>{{partidasGanadasActual}}</h2>
+                  <h2>{{puntosMax}}</h2>
                 </span>
-                <p class="card-text"><small>Partidas ganadas</small></p>
+                <p class="card-text"><small>Máxima puntuación</small></p>
               </div>
             </div>
           </div>
@@ -79,4 +164,3 @@
       </div>
     </div>
   </div>
-</div>

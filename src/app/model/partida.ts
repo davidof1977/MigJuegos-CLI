@@ -3,4 +3,5 @@ export class Partida{
   fecha: string;
   ganador: boolean;
   juego: string;
+  puntos: number;
 }
