@@ -10,16 +10,17 @@
             <th class="text-left">Juego</th>
             <th class="text-left">Fecha</th>
             <th class="text-left">Ganador</th>
+            <th class="text-left">Puntos de victoria</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let partida of partidas | paginate: { id: 'foo',
           itemsPerPage: pageSize,
-          currentPage: p
-          }"   class="text-center">
+          currentPage: p}"   class="text-center">
             <td class="text-primary text-left">{{partida.juego}}</td>
             <td class="text-primary text-left">{{partida.fecha | date:'fullDate':'+0034':'es'}}</td>
             <td class="text-primary text-left"><input type="checkbox" [checked]=partida.ganador disabled=true /></td>
+            <td class="text-primary text-left">{{partida.puntos}}</td>
           </tr>
         </tbody>
       </table>
