@@ -1,9 +1,10 @@
 import { Juego } from './../../model/juego';
 import { JuegosServiceService } from './../../services/juegos-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,10 +12,11 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './buscar.component.html',
   styleUrls: ['./buscar.component.css']
 })
-export class BuscarComponent implements OnInit {
+export class BuscarComponent implements OnInit, OnDestroy {
 
   buscarControl = new FormControl('');
   juegos: Juego[];
+  suscripcion: Subscription;
 
   constructor(private servicio: JuegosServiceService, private router: Router) { }
 
@@ -23,7 +25,7 @@ export class BuscarComponent implements OnInit {
     const juego = new Juego();
     juego.nombre = '';
     this.juegos.push(juego);
-    this.buscarControl.valueChanges
+    this.suscripcion = this.buscarControl.valueChanges
     .pipe(debounceTime(500))
     .subscribe(value => {
       if (value !== ''){
@@ -35,7 +37,9 @@ export class BuscarComponent implements OnInit {
       }
     });
   }
-
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
+  }
   nuevaPartida(juego: string){
     // this.router.navigate(['/crearPartidas', juego]);
     localStorage.setItem('nombreJuego', juego);

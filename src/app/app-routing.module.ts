@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListarPartidasComponent } from './partidas/listar-partidas/listar-partidas.component';
 import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
+import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'buscarJuego', component: BuscarComponent},
   {path: 'estadisticas', component: EstadisticasComponent},
   {path: 'cuadromando', component: PrincipalComponent},
+  {path: 'pruebas', component: PruebasComponent},
   { path: '**', redirectTo: 'estadisticas', pathMatch: 'full' }
 ];
 

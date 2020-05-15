@@ -6,23 +6,43 @@
           <h3 class="text-center">NUEVA PARTIDA A {{nombreJuego | uppercase}}</h3>
         </div>
         <div class="card-body mx-auto" >
-          <form action="">
+          <form  [formGroup]="formularioDinamico" (ngSubmit)="onSubmit()">
             <div class="form group">
               <label class="form-text form control" for="fecha">Fecha:</label>
-              <input type="date" [(ngModel)]="partida.fecha" id="fecha" name="fecha" class="form control">
+              <input type="date" formControlName="fecha" id="fecha" name="fecha" class="form control">
             </div>
             <div class="form group mt-3">
               <label class="form-text form control" for="pv">Puntos de victoria:</label>
-              <input type="text" [(ngModel)]="partida.puntos" name="pv" class="form control" >
+              <input type="text" formControlName="puntos" name="pv" class="form control" >
             </div>
             <div class="form-check form-check-inline mt-3">
-              <input type="checkbox" [(ngModel)]="partida.ganador" id="ganador" name= "ganador" class="form-check-input">
+              <input type="checkbox" formControlName="ganador" id="ganador" name= "ganador" class="form-check-input">
               <label form-check-label for="ganador">Ganador</label>
             </div>
-            <div class="d-flex justify-content-center mt-3" >
-              <button (click)="guardarPartida()" class="btn btn-success">Guardar</button>
-            </div>
-
+            <button (click)="addNuevoJugador($event)">
+              + Añadir
+            </button>
+            <div *ngFor="let jugadorNuevo of j.controls; let i = index" class="list-group list-group-flush">
+              <div class="list-group-item">
+                  <h5 class="card-title">Jugador {{i + 1}}</h5>
+                  <div [formGroup]="jugadorNuevo" class="form-row">
+                      <div class="form-group col-6">
+                          <label>Nombre</label>
+                          <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && jugadorNuevo.errors}" />
+                          <div *ngIf="submitted && jugadorNuevo.errors" class="invalid-feedback">
+                              <div *ngIf="jugadorNuevo.errors.required">Nombre es requerido</div>
+                          </div>
+                      </div>
+                      <div class="form-group col-6">
+                          <label>Puntos</label>
+                          <input type="text" formControlName="puntosJugador" class="form-control" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3" >
+            <button  class="btn btn-success">Guardar</button>
+          </div>
           </form>
         </div>
       </div>

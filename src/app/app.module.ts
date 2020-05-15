@@ -24,6 +24,7 @@ import { PieComponent } from './cuadromando/pie/pie.component';
 import { ServicioMensajeriaService } from './services/servicio-mensajeria.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './utilidades/toast/toast.component';
+import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
@@ -41,7 +42,8 @@ registerLocaleData(localeES, 'es');
     CuerpoComponent,
     MargenComponent,
     PieComponent,
-    ToastComponent
+    ToastComponent,
+    PruebasComponent
   ],
   imports: [
     BrowserModule,

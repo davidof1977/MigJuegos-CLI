@@ -71,4 +71,9 @@ export class JuegosServiceService {
     const api = 'juegos';
     return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/' + mes);
   }
+
+  getJugadores(regex: string){
+    const api = 'juegos/partidas/jugadores';
+    return this.http.get<string[]>(this.url + '/' + api + '/' + regex);
+  }
 }
