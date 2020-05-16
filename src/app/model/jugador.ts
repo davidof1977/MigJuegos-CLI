@@ -1,4 +1,4 @@
 export class Jugador{
   nombre: string;
-  puntos: number;
+  puntosJugador: number;
 }

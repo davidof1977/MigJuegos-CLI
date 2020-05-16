@@ -6,5 +6,5 @@ export class Partida{
   ganador: boolean;
   juego: string;
   puntos: number;
-  jugadores: Jugador;
+  jugadores: Jugador[];
 }

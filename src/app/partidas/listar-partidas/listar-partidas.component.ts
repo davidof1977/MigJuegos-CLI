@@ -45,4 +45,8 @@ export class ListarPartidasComponent implements OnInit {
     this.servicio.getTodasPartidas().subscribe(p => this.partidas = p);
   }
 
+  serializarPartida(partida: Partida){
+    localStorage.setItem('partida', JSON.stringify(partida));
+  }
+
 }

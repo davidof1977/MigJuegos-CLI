@@ -17,7 +17,9 @@
           <tr *ngFor="let partida of partidas | paginate: { id: 'foo',
           itemsPerPage: pageSize,
           currentPage: p}"   class="text-center">
-            <td class="text-primary text-left">{{partida.juego}}</td>
+            <td class="text-primary text-left">
+              <a (click)="serializarPartida(partida)" [routerLink]="['/detallePartida']">{{partida.juego}}</a>
+            </td>
             <td class="text-primary text-left">{{partida.fecha | date:'fullDate':'+0034':'es'}}</td>
             <td class="text-primary text-left"><input type="checkbox" [checked]=partida.ganador disabled=true /></td>
             <td class="text-primary text-left">{{partida.puntos}}</td>

@@ -6,13 +6,14 @@ import { JuegosServiceService } from './../../services/juegos-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { Juego } from 'src/app/model/juego';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-partidas',
   templateUrl: './crear-partidas.component.html',
   styleUrls: ['./crear-partidas.component.css']
 })
-export class CrearPartidasComponent implements OnInit, OnDestroy {
+export class CrearPartidasComponent implements OnInit {
 
   nombreJuego: string;
   juego: Juego;
@@ -27,9 +28,7 @@ export class CrearPartidasComponent implements OnInit, OnDestroy {
               private router: Router,
               public toastService: ToastService,
               private fb: FormBuilder) { }
-  ngOnDestroy(): void {
-    this.suscripcion.unsubscribe();
-  }
+
 
   ngOnInit(): void {
     this.index = 0;
@@ -87,6 +86,7 @@ export class CrearPartidasComponent implements OnInit, OnDestroy {
 
     // stop here if form is invalid
     if (this.formularioDinamico.invalid) {
+        this.formularioDinamico.markAllAsTouched();
         return;
     }
 
@@ -94,6 +94,10 @@ export class CrearPartidasComponent implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.formularioDinamico.value, null, 4));
     this.guardarPartida();
 }
+
+  onBlurEvento(){
+    this.suscripcion.unsubscribe();
+  }
 
   guardarPartida(){
     this.partida = new Partida();
@@ -115,6 +119,7 @@ export class CrearPartidasComponent implements OnInit, OnDestroy {
         classname: 'bg-success text-light',
         headertext: 'Partida guardada'
       });
+
       this.router.navigate(['/listarJuegos']);
     });
   }

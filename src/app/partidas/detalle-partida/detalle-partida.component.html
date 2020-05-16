@@ -1,0 +1,27 @@
+<div class="continer">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">DETALLE DE LA PARTIDA </h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-center">
+            <th class="text-left">Jugador</th>
+            <th class="text-left">Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" [ngClass]="{ 'text-success': partida.ganador === true }" >
+            <td class="text-left">Tu</td>
+            <td class="text-left">{{partida.puntos}}</td>
+         </tr>
+          <tr *ngFor="let jugador of partida.jugadores" [ngClass]="{ 'text-success': getGanador() === jugador.nombre }">
+            <td class="text-left">{{jugador.nombre}}</td>
+            <td class="text-left">{{jugador.puntosJugador}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

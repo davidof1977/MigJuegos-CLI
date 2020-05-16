@@ -7,41 +7,56 @@
         </div>
         <div class="card-body mx-auto" >
           <form  [formGroup]="formularioDinamico" (ngSubmit)="onSubmit()">
-            <div class="form group">
-              <label class="form-text form control" for="fecha">Fecha:</label>
-              <input type="date" formControlName="fecha" id="fecha" name="fecha" class="form control">
+            <div class="list-group list-group-flush">
+              <div class="list-group-item border">
+                  <div class="form-row border">
+                      <div class="form-group col-6">
+                          <label>Fecha:</label>
+                          <input type="date" formControlName="fecha" id="fecha" name="fecha" class="form control">
+                          <small id="nombreHelp" *ngIf="formularioDinamico.get('fecha').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
+                        </div>
+                      <div class="form-group border col-6">
+                          <label>Puntos de victoria:</label>
+                          <input type="text" formControlName="puntos" name="pv" class="form control" >
+                          <small id="nombreHelp" *ngIf="formularioDinamico.get('puntos').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
+                      </div>
+                      <div class="form-groug border mx-auto">
+                        <input type="checkbox" formControlName="ganador" id="ganador" name= "ganador" class="form-check-input">
+                       <label  for="ganador">Ganador</label>
+
+                      </div>
+                      <div class="border">
+                        <button (click)="addNuevoJugador($event)" alt="Añadir jugador" class="btn btn-outline-light">
+                          <img src="assets/img/icon_meeple.png" class="img-fluid img-thumbnail" style="max-width:40px;">
+                        </button>
+                    </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="form group mt-3">
-              <label class="form-text form control" for="pv">Puntos de victoria:</label>
-              <input type="text" formControlName="puntos" name="pv" class="form control" >
-            </div>
-            <div class="form-check form-check-inline mt-3">
-              <input type="checkbox" formControlName="ganador" id="ganador" name= "ganador" class="form-check-input">
-              <label form-check-label for="ganador">Ganador</label>
-            </div>
-            <button (click)="addNuevoJugador($event)">
-              + Añadir
-            </button>
+
+
             <div *ngFor="let jugadorNuevo of j.controls; let i = index" class="list-group list-group-flush">
               <div class="list-group-item">
                   <h5 class="card-title">Jugador {{i + 1}}</h5>
                   <div [formGroup]="jugadorNuevo" class="form-row">
                       <div class="form-group col-6">
                           <label>Nombre</label>
-                          <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && jugadorNuevo.errors}" />
-                          <div *ngIf="submitted && jugadorNuevo.errors" class="invalid-feedback">
-                              <div *ngIf="jugadorNuevo.errors.required">Nombre es requerido</div>
-                          </div>
+                          <input type="text" formControlName="nombre" class="form-control"
+                            (blur) = "onBlurEvento()" />
+                            <small id="nombreHelp" *ngIf="jugadorNuevo.get('nombre').hasError('required') && jugadorNuevo.get('nombre').touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
                       <div class="form-group col-6">
                           <label>Puntos</label>
                           <input type="text" formControlName="puntosJugador" class="form-control" />
+                          <small id="nombreHelp" *ngIf="jugadorNuevo.get('puntosJugador').hasError('required') && jugadorNuevo.get('puntosJugador').touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
                   </div>
               </div>
           </div>
           <div class="d-flex justify-content-center mt-3" >
             <button  class="btn btn-success">Guardar</button>
+
           </div>
           </form>
         </div>
