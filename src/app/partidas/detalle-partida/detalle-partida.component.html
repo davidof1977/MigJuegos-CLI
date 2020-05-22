@@ -9,16 +9,19 @@
           <tr class="text-center">
             <th class="text-left">Jugador</th>
             <th class="text-left">Puntos</th>
+            <th class="text-left"></th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-center" [ngClass]="{ 'text-success': partida.ganador === true }" >
             <td class="text-left">Tu</td>
             <td class="text-left">{{partida.puntos}}</td>
+            <td class="text-left"><img src="assets/img/trofeo.png" class="img-thumbnail" style="max-width:40px;" [hidden]="partida.ganador === false" /></td>
          </tr>
           <tr *ngFor="let jugador of partida.jugadores" [ngClass]="{ 'text-success': getGanador() === jugador.nombre }">
             <td class="text-left">{{jugador.nombre}}</td>
             <td class="text-left">{{jugador.puntosJugador}}</td>
+            <td class="text-left"><img src="assets/img/trofeo.png" class="img-fluid img-thumbnail" style="max-width:40px;" [hidden]="getGanador() !== jugador.nombre" /></td>
           </tr>
         </tbody>
       </table>

@@ -76,4 +76,10 @@ export class JuegosServiceService {
     const api = 'juegos/partidas/jugadores';
     return this.http.get<string[]>(this.url + '/' + api + '/' + regex);
   }
+
+  eliminarJuego(nombre: string){
+    const api = 'juegos';
+    console.log(this.url + '/' + api + '/' + nombre);
+    return this.http.delete<void>(this.url + '/' + api + '/' + nombre);
+  }
 }

@@ -1,7 +1,7 @@
 import { BuscarComponent } from './juegos/buscar/buscar.component';
 import { JuegosServiceService } from './services/juegos-service.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -56,7 +56,7 @@ registerLocaleData(localeES, 'es');
     NgxPaginationModule,
     NgbModule
   ],
-  providers: [JuegosServiceService, ServicioMensajeriaService],
+  providers: [JuegosServiceService, ServicioMensajeriaService,  { provide: LOCALE_ID, useValue: 'es-ES' }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

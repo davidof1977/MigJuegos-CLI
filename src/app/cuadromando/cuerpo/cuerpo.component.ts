@@ -98,7 +98,7 @@ export class CuerpoComponent implements OnInit, OnDestroy{
 }
 
 getNombreMes(mesNumerico: string){
-  const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+  const monthNames = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
   'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 ];
   console.log(mesNumerico);

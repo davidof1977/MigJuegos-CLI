@@ -11,18 +11,23 @@
             <th class="text-left">Fecha</th>
             <th class="text-left">Ganador</th>
             <th class="text-left">Puntos de victoria</th>
+            <th class="text-left"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let partida of partidas | paginate: { id: 'foo',
+          <tr *ngFor="let i = index; let partida of partidas | paginate: { id: 'foo',
           itemsPerPage: pageSize,
           currentPage: p}"   class="text-center">
             <td class="text-primary text-left">
               <a (click)="serializarPartida(partida)" [routerLink]="['/detallePartida']">{{partida.juego}}</a>
             </td>
-            <td class="text-primary text-left">{{partida.fecha | date:'fullDate':'+0034':'es'}}</td>
-            <td class="text-primary text-left"><input type="checkbox" [checked]=partida.ganador disabled=true /></td>
+            <td class="text-primary text-left">{{partida.fecha | date:'fullDate'}}</td>
+            <td class="text-primary text-left"><img src="assets/img/trofeo.png" class="img-thumbnail" style="max-width:40px;" [hidden]="partida.ganador === false" /></td>
             <td class="text-primary text-left">{{partida.puntos}}</td>
+            <td class="text-primary text-left">
+              <img src="assets/img/eliminar.png" (click)="eliminar(i)"
+                class="img-thumbnail" style="max-width:40px;" />
+            </td>
           </tr>
         </tbody>
       </table>

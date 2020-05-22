@@ -14,6 +14,7 @@ export class ListarComponent implements OnInit {
   juegos: Juego[];
   p = 1;
   pageSize = 5;
+  nombreJuegoEliminar: string;
 
   constructor(private service: JuegosServiceService, private router: Router) { }
 
@@ -42,6 +43,15 @@ export class ListarComponent implements OnInit {
   editarJuego(juego: string){
     localStorage.setItem('nombreJuego', juego);
     this.router.navigate(['/editarJuego']);
+  }
+
+  eliminarJuego(){
+    this.service.eliminarJuego(this.nombreJuegoEliminar).subscribe();
+    this.router.navigate(['/']);
+  }
+
+  establecerNombreJuegoEliminar(nombre: string){
+    this.nombreJuegoEliminar = nombre;
   }
 
 }

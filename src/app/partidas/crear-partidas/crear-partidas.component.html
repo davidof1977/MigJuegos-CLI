@@ -5,28 +5,29 @@
         <div class="card-header">
           <h3 class="text-center">NUEVA PARTIDA A {{nombreJuego | uppercase}}</h3>
         </div>
-        <div class="card-body mx-auto" >
+        <div class="card-body mx-auto " >
           <form  [formGroup]="formularioDinamico" (ngSubmit)="onSubmit()">
-            <div class="list-group list-group-flush">
-              <div class="list-group-item border">
-                  <div class="form-row border">
-                      <div class="form-group col-6">
+            <div class="list-group list-group-flush ">
+              <div class="list-group-item ">
+                  <div class="form-row ">
+                      <div class="form-group col-6 ">
                           <label>Fecha:</label>
                           <input type="date" formControlName="fecha" id="fecha" name="fecha" class="form control">
                           <small id="nombreHelp" *ngIf="formularioDinamico.get('fecha').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
                         </div>
-                      <div class="form-group border col-6">
+                      <div class="form-group  col-6">
                           <label>Puntos de victoria:</label>
                           <input type="text" formControlName="puntos" name="pv" class="form control" >
                           <small id="nombreHelp" *ngIf="formularioDinamico.get('puntos').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
-                      <div class="form-groug border mx-auto">
+                      <div class="form-groug  col-sm-9 mx-auto ">
                         <input type="checkbox" formControlName="ganador" id="ganador" name= "ganador" class="form-check-input">
                        <label  for="ganador">Ganador</label>
 
                       </div>
-                      <div class="border">
-                        <button (click)="addNuevoJugador($event)" alt="Añadir jugador" class="btn btn-outline-light">
+                      <div class="">
+                        <button (click)="addNuevoJugador($event)" alt="Añadir jugador"
+                          class="btn btn-outline-light" data-toggle="tooltip" data-placement="top" title="Añadir jugador">
                           <img src="assets/img/icon_meeple.png" class="img-fluid img-thumbnail" style="max-width:40px;">
                         </button>
                     </div>
@@ -36,11 +37,11 @@
             </div>
 
 
-            <div *ngFor="let jugadorNuevo of j.controls; let i = index" class="list-group list-group-flush">
-              <div class="list-group-item">
+            <div *ngFor="let jugadorNuevo of j.controls; let i = index" class=" list-group list-group-flush">
+              <div class="list-group-item ">
                   <h5 class="card-title">Jugador {{i + 1}}</h5>
-                  <div [formGroup]="jugadorNuevo" class="form-row">
-                      <div class="form-group col-6">
+                  <div [formGroup]="jugadorNuevo" class="form-row ">
+                      <div class="form-group col-6 ">
                           <label>Nombre</label>
                           <input type="text" formControlName="nombre" class="form-control"
                             (blur) = "onBlurEvento()" />

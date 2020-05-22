@@ -14,7 +14,8 @@ export class ListarPartidasComponent implements OnInit {
   partidas: Partida[];
   juego: string;
   tipo: string;
-  constructor(private servicio: JuegosServiceService, private ruta: ActivatedRoute) { }
+  constructor(private servicio: JuegosServiceService, private ruta: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     // tslint:disable-next-line:no-string-literal
@@ -47,6 +48,21 @@ export class ListarPartidasComponent implements OnInit {
 
   serializarPartida(partida: Partida){
     localStorage.setItem('partida', JSON.stringify(partida));
+  }
+
+  eliminar(posicion: number){
+    if(this.p > 1){
+      posicion = posicion + ((this.p - 1) * this.pageSize);
+    }
+    console.log(posicion);
+
+    this.servicio.getJuego(this.juego).subscribe(j => {
+      j.partidas.sort((f1, f2) => f1.fecha.localeCompare(f2.fecha));
+      j.partidas.splice(posicion, 1);
+      this.servicio.guardarJuego(j).subscribe(o => {
+        this.listar(this.juego);
+      });
+    });
   }
 
 }
