@@ -16,7 +16,7 @@ import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
 const routes: Routes = [
   {path: 'listarJuegos', component: ListarComponent},
   {path: 'nuevoJuego', component: CrearComponent},
-  {path: 'editarJuego', component: EditarComponent},
+  {path: 'editarJuego/:juego', component: EditarComponent},
   {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
   {path: 'crearPartidas', component: CrearPartidasComponent},
   {path: 'listarPartidas', component: ListarPartidasComponent},

@@ -40,9 +40,8 @@ export class ListarComponent implements OnInit {
     this.router.navigate(['/crearPartidas']);
   }
 
-  editarJuego(juego: string){
-    localStorage.setItem('nombreJuego', juego);
-    this.router.navigate(['/editarJuego']);
+  partidasJuego(juego: string){
+    this.router.navigate(['/listarPartidas', juego]);
   }
 
   eliminarJuego(){

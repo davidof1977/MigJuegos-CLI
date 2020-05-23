@@ -21,12 +21,12 @@
           currentPage: p
           }"    class="text-center">
             <td><img [src]=juego.img class="img-fluid img-thumbnail" style="max-width:50px;"></td>
-            <td><a [routerLink]="['/listarPartidas', juego.nombre]">{{juego.nombre}}</a></td>
+            <td><a [routerLink]="['/editarJuego', juego.nombre]">{{juego.nombre}}</a></td>
             <td><input type="checkbox" disabled=true [checked]=juego.enColeccion /> </td>
             <td><input type="checkbox" disabled=true [checked]=juego.enSeguimiento /></td>
             <td><input type="checkbox" disabled=true [checked]=juego.enListaDeseos /></td>
             <td>
-              <button (click)="editarJuego(juego.nombre)" class="btn btn-success">Editar</button>
+              <button (click)="partidasJuego(juego.nombre)" class="btn btn-success">Partidas</button>
               <button (click)="nuevaPartida(juego.nombre)"  class="btn btn-success" style="margin-left: 10px;">Nueva partida</button>
               <button (click)="establecerNombreJuegoEliminar(juego.nombre)" ata-toggle="modal" data-target="#eliminacion" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
             </td>

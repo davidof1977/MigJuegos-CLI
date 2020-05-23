@@ -12,6 +12,8 @@ export class ListarPartidasComponent implements OnInit {
   p = 1;
   pageSize = 5;
   partidas: Partida[];
+  partidasJugadas: number;
+  partidasGanadas: number;
   juego: string;
   tipo: string;
   constructor(private servicio: JuegosServiceService, private ruta: ActivatedRoute,
@@ -34,16 +36,25 @@ export class ListarPartidasComponent implements OnInit {
   listar(juego: string){
       this.servicio.getPartidas(juego).subscribe(p => {
         this.partidas = p;
+        this.partidasJugadas = p.length;
+        this.partidasGanadas = p.filter(partida => partida.ganador === true).length;
         p.forEach(par => par.juego = this.juego);
       });
   }
 
   listaPartidasGanadas(){
-    this.servicio.getPartidasGanadas().subscribe(p => this.partidas = p);
+    this.servicio.getPartidasGanadas().subscribe(p => {
+      this.partidas = p;
+      this.partidasGanadas = p.filter(partida => partida.ganador === true).length;
+    });
   }
 
   listaTodasPartidas(){
-    this.servicio.getTodasPartidas().subscribe(p => this.partidas = p);
+    this.servicio.getTodasPartidas().subscribe(p => {
+      this.partidas = p;
+      this.partidasJugadas = p.length;
+      this.partidasGanadas = p.filter(partida => partida.ganador === true).length;
+    });
   }
 
   serializarPartida(partida: Partida){

@@ -69,7 +69,12 @@ export class JuegosServiceService {
 
   getPartidasMes(mes: number){
     const api = 'juegos';
-    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/' + mes);
+    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/mes/' + mes);
+  }
+
+  getPartidasAnio(anio: number){
+    const api = 'juegos';
+    return this.http.get<Partida[]>(this.url + '/' + api + '/partidas/anio/' + anio);
   }
 
   getJugadores(regex: string){

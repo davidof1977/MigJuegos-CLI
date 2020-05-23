@@ -46,8 +46,7 @@ export class BuscarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/crearPartidas']);
   }
 
-  editarJuego(juego: string){
-    localStorage.setItem('nombreJuego', juego);
-    this.router.navigate(['/editarJuego']);
+  partidasJuego(juego: string){
+    this.router.navigate(['/listarPartidas', juego]);
   }
 }

@@ -16,6 +16,8 @@ export class EstadisticasComponent implements OnInit {
   numVictorias: number;
   numPartidasUltimoMes: number;
   numVictoriasUltimoMes: number;
+  numPartidasAnioActual: number;
+  numVictoriasAnioActual: number;
 
   constructor(private servicio: JuegosServiceService) { }
 
@@ -28,12 +30,13 @@ export class EstadisticasComponent implements OnInit {
     this.servicio.getPartidasGanadas().subscribe(data => this.numVictorias = data.length);
     this.servicio.getPartidasMes(new Date().getMonth() + 1).subscribe(data => {
       this.numPartidasUltimoMes = data.length;
-      data.forEach(p => {
-        if (p.ganador){
-          this.numVictoriasUltimoMes = this.numVictoriasUltimoMes + 1;
-        }
-      });
+      this.numVictoriasUltimoMes = data.filter(p => p.ganador).length;
     });
+    this.servicio.getPartidasAnio(new Date().getFullYear()).subscribe(data => {
+      this.numPartidasAnioActual = data.length;
+      this.numVictoriasAnioActual = data.filter(p => p.ganador).length;
+    });
+
   }
   navegarColeccion(){
     localStorage.setItem('origenPeticion', 'listadoColeccion');
