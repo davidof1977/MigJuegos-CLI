@@ -15,15 +15,15 @@ import { debounceTime } from 'rxjs/operators';
 export class CuerpoComponent implements OnInit, OnDestroy{
 
   juego: Juego;
-  partidasGanadas: number;
-  partidasGanadasMesActual: number;
-  partidasGanadasAnioActual: number;
-  partidasJugadas: number;
-  partidasJugadasMesActual: number;
-  partidasJugadasAnioActual: number;
-  puntosMax: number;
-  puntosMaxMesActual: number;
-  puntosMaxAnioActual: number;
+  partidasGanadas = 0;
+  partidasGanadasMesActual = 0;
+  partidasGanadasAnioActual = 0;
+  partidasJugadas = 0;
+  partidasJugadasMesActual = 0;
+  partidasJugadasAnioActual = 0;
+  puntosMax = 0;
+  puntosMaxMesActual = 0;
+  puntosMaxAnioActual = 0;
   mes: string;
   anio: string;
 
@@ -31,15 +31,20 @@ export class CuerpoComponent implements OnInit, OnDestroy{
   subscriptionMes: Subscription;
 
   constructor(private servicio: JuegosServiceService, private mensajeria: ServicioMensajeriaService) {
+
     this.subscriptionNombre = this.mensajeria.getNombre().subscribe(nombre => {
       if (nombre) {
         this.partidasGanadas = 0;
         this.servicio.getJuego(nombre).subscribe(j => {
           this.juego = j;
-          if (j.partidas !== null){
+          if (j.partidas !== null && j.partidas.length > 0){
             j.partidas.filter(p => p.ganador === true).forEach(pg => this.partidasGanadas = this.partidasGanadas + 1);
             this.partidasJugadas = j.partidas.length;
             this.puntosMax = j.partidas.reduce((a, c) => a.puntos > c.puntos ? a : c).puntos;
+          }else{
+            this.puntosMax = 0;
+            this.partidasJugadas = 0;
+            this.partidasGanadas = 0;
           }
         });
       }

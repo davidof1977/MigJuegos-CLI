@@ -1,7 +1,7 @@
 <div class="continer">
   <div class="card">
     <div class="card-header">
-      <h3 class="text-center">RESULTADOS DE LA BUSQUEDA</h3>
+      <h5 class="text-center">Nombre del juego <input type="text" [formControl]="buscarControl" /></h5>
     </div>
     <div class="card-body">
       <table class="table table-hover">
@@ -15,7 +15,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let juego of juegos"   class="text-center">
+          <tr><td colspan="5" class="text-center"><small id="nombreHelp" [hidden]="errorMessage.length<1" class="text-danger">{{errorMessage}}</small></td></tr>
+          <tr *ngFor="let juego of juegos" [hidden] = "inicializacion" class="text-center">
             <td><a [routerLink]="['/editarJuego', juego.nombre]">{{juego.nombre}}</a></td>
             <td><input type="checkbox" disabled=true [checked]=juego.enColeccion /> </td>
             <td><input type="checkbox" disabled=true [checked]=juego.enSeguimiento /></td>
@@ -28,8 +29,6 @@
           </tr>
         </tbody>
       </table>
-      <input type="text" [formControl]="buscarControl" />
-      <small id="nombreHelp" [hidden]="errorMessage.length<1" class="text-danger">{{errorMessage}}</small>
     </div>
   </div>
 </div>

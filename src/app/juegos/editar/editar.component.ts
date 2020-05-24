@@ -14,9 +14,9 @@ export class EditarComponent implements OnInit {
   controlNombre = new FormControl('', [Validators.required]);
   juego: Juego = new Juego();
   nombreJuego: string;
-  partidasJugadas: number;
-  partidasGanadas: number;
-  maximaPuntuacion: number;
+  partidasJugadas = 0;
+  partidasGanadas = 0;
+  maximaPuntuacion = 0;
 
   constructor(private router: Router, private servicio: JuegosServiceService,
               private ruta: ActivatedRoute) { }

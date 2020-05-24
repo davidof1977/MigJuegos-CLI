@@ -15,6 +15,7 @@
           </tr>
         </thead>
         <tbody>
+          <tr><td colspan="5" class="text-center"> {{errorMessage}}</td></tr>
           <tr *ngFor="let i = index; let partida of partidas | paginate: { id: 'foo',
           itemsPerPage: pageSize,
           currentPage: p}"   class="text-center">
@@ -31,7 +32,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination-controls id="foo" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls id="foo" (pageChange)="p = $event" [autoHide]="errorMessage.length>1"></pagination-controls>
     </div>
   </div>
 </div>

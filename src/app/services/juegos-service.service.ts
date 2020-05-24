@@ -49,12 +49,18 @@ export class JuegosServiceService {
 
   getPartidas(juego: string){
     const api = 'juegos';
-    return this.http.get<Partida[]>(this.url + '/' + api + '/' + juego + '/partidas');
+    return this.http.get(this.url + '/' + api + '/' + juego + '/partidas')
+    .catch((err: HttpErrorResponse) => {
+      return err.error.message as string;
+    });
   }
 
   getPartidasJuegoGanadas(juego: string){
     const api = 'juegos';
-    return this.http.get<Partida[]>(this.url + '/' + api + '/' + juego + '/ganadas');
+    return this.http.get(this.url + '/' + api + '/' + juego + '/ganadas')
+    .catch((err: HttpErrorResponse) => {
+      return err.error.message as string;
+    });
   }
 
   getJuego(nombre: string){

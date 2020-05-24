@@ -16,11 +16,12 @@ export class ListarPartidasComponent implements OnInit {
   partidasGanadas: number;
   juego: string;
   tipo: string;
+  errorMessage: string;
   constructor(private servicio: JuegosServiceService, private ruta: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
-    // tslint:disable-next-line:no-string-literal
+    this.errorMessage = '';
     this.ruta.paramMap.subscribe(params => this.juego = params.get('juego'));
     this.tipo = localStorage.getItem('tipo');
     if (this.tipo === 'ganadas'){
@@ -35,10 +36,21 @@ export class ListarPartidasComponent implements OnInit {
 
   listar(juego: string){
       this.servicio.getPartidas(juego).subscribe(p => {
-        this.partidas = p;
+        if (p instanceof Array){
+          this.errorMessage = '';
+          this.partidas = p as Partida[];
+          this.partidasJugadas = p.length;
+          this.partidasGanadas = p.filter(partida => partida.ganador === true).length;
+          p.forEach(par => par.juego = this.juego);
+        }else{
+          this.errorMessage = this.errorMessage.concat(p as string);
+          this.partidas = undefined;
+        }
+/*        this.partidas = p;
         this.partidasJugadas = p.length;
         this.partidasGanadas = p.filter(partida => partida.ganador === true).length;
         p.forEach(par => par.juego = this.juego);
+*/
       });
   }
 

@@ -19,6 +19,7 @@ export class BuscarComponent implements OnInit, OnDestroy {
   juegos: Juego[];
   suscripcion: Subscription;
   errorMessage: string;
+  inicializacion = true;
   constructor(private servicio: JuegosServiceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class BuscarComponent implements OnInit, OnDestroy {
             if (j instanceof Array){
               this.errorMessage = '';
               this.juegos = j as Juego[];
+              this.inicializacion = false;
             }else{
               this.errorMessage = this.errorMessage.concat(j as string);
               this.juegos = undefined;

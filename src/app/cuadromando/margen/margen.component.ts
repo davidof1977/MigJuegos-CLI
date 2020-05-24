@@ -16,9 +16,11 @@ export class MargenComponent implements OnInit {
   buscarControl = new FormControl('');
   mes = new FormControl('');
   juegos: Juego[];
+  errorMessage: string;
   constructor(private servicio: JuegosServiceService, private mensajeria: ServicioMensajeriaService) { }
 
   ngOnInit(): void {
+    this.errorMessage = '';
     const fechaActual = new Date();
     const month = '0' + (fechaActual.getMonth() + 1);
     this.mes.setValue(fechaActual.getFullYear() + '-' + month.slice(-2));
@@ -27,8 +29,12 @@ export class MargenComponent implements OnInit {
     .subscribe(value => {
       if (value !== ''){
         this.servicio.buscarJuegos('.*' + value + '.*').subscribe(j => {
-          if (j != null) {
+          if (j instanceof Array){
+            this.errorMessage = '';
             this.juegos = j as Juego[];
+          }else{
+            this.errorMessage = this.errorMessage.concat(j as string);
+            this.juegos = undefined;
           }
         });
       }
