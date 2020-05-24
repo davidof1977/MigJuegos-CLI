@@ -28,7 +28,7 @@ export class MargenComponent implements OnInit {
       if (value !== ''){
         this.servicio.buscarJuegos('.*' + value + '.*').subscribe(j => {
           if (j != null) {
-            this.juegos = j;
+            this.juegos = j as Juego[];
           }
         });
       }

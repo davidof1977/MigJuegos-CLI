@@ -1,7 +1,9 @@
 import { Juego } from './../model/juego';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Partida } from '../model/partida';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,10 @@ export class JuegosServiceService {
 
   buscarJuegos(regex: string){
     const api = 'juegos/buscar';
-    return this.http.get<Juego[]>(this.url + '/' + api + '/' + regex);
+    return this.http.get(this.url + '/' + api + '/' + regex)
+      .catch((err: HttpErrorResponse) => {
+        return err.error.message as string;
+      });
   }
 
   getJuegosEnColeccion(){

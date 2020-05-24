@@ -29,6 +29,7 @@
         </tbody>
       </table>
       <input type="text" [formControl]="buscarControl" />
+      <small id="nombreHelp" [hidden]="errorMessage.length<1" class="text-danger">{{errorMessage}}</small>
     </div>
   </div>
 </div>
