@@ -1,3 +1,4 @@
+import { EstadisiticasJuego } from './../../model/estadisticasJuego';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Juego } from 'src/app/model/juego';
@@ -18,12 +19,16 @@ export class EditarComponent implements OnInit {
   partidasGanadas = 0;
   maximaPuntuacion = 0;
 
+  estadisticasJuego: EstadisiticasJuego[];
+  p = 1;
+  pageSize = 5;
+
   constructor(private router: Router, private servicio: JuegosServiceService,
               private ruta: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.ruta.paramMap.subscribe(params => this.nombreJuego = params.get('juego'));
-    if(this.nombreJuego != null){
+    if (this.nombreJuego != null){
       this.servicio.getJuego(this.nombreJuego).subscribe(j => {
         this.juego = j;
         if (j.partidas !== null){
@@ -32,6 +37,7 @@ export class EditarComponent implements OnInit {
           this.maximaPuntuacion = j.partidas.reduce((a, c) => a.puntos > c.puntos ? a : c).puntos;
         }
       });
+      this.servicio.getEstadisticasJugadores(this.nombreJuego).subscribe(e => this.estadisticasJuego = e);
     }
 
   }

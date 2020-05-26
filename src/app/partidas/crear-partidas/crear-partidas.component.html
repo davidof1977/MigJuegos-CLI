@@ -20,10 +20,13 @@
                           <input type="text" formControlName="puntos" name="pv" class="form control" >
                           <small id="nombreHelp" *ngIf="formularioDinamico.get('puntos').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
-                      <div class="form-groug  col-sm-9 mx-auto ">
+                      <div class="form-groug  col-sm-11 mx-auto ">
                         <input type="checkbox" formControlName="ganador" id="ganador" name= "ganador" class="form-check-input">
-                       <label  for="ganador">Ganador</label>
-
+                        <label  for="ganador">Ganador</label>
+                      </div>
+                      <div class="form-groug  col-sm-9 mx-auto ">
+                        <input type="checkbox" formControlName="primeraPartida" id="primeraPartida" name= "primeraPartida" class="form-check-input">
+                        <label  for="ganador">Primera partida</label>
                       </div>
                       <div class="">
                         <button (click)="addNuevoJugador($event)" alt="Añadir jugador"

@@ -1,3 +1,5 @@
+import { Jugador } from './../model/jugador';
+import { EstadisiticasJuego } from './../model/estadisticasJuego';
 import { Juego } from './../model/juego';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -97,5 +99,15 @@ export class JuegosServiceService {
     const api = 'juegos';
     console.log(this.url + '/' + api + '/' + nombre);
     return this.http.delete<void>(this.url + '/' + api + '/' + nombre);
+  }
+
+  getEstadisticasJugadores(juego: string){
+    const api = 'juegos/';
+    return this.http.get<EstadisiticasJuego[]>(this.url + '/' + api + '/' + juego + '/estadisticas');
+  }
+
+  getRecordsJuego(juego: string){
+    const api = 'juegos/';
+    return this.http.get<Jugador>(this.url + '/' + api + '/' + juego + '/records');
   }
 }

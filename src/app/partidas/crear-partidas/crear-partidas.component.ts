@@ -49,6 +49,7 @@ export class CrearPartidasComponent implements OnInit {
       fecha: new FormControl('', [Validators.required]),
       puntos: new FormControl('', [Validators.required]),
       ganador: new FormControl(''),
+      primeraPartida: new FormControl(''),
       nuevoJugador: new FormArray([])
     });
   }
@@ -105,6 +106,12 @@ export class CrearPartidasComponent implements OnInit {
       this.partida.ganador = false;
     }else{
       this.partida.ganador = this.formularioDinamico.get('ganador').value;
+    }
+
+    if (this.formularioDinamico.get('primeraPartida').value === ''){
+      this.partida.primeraPartida = false;
+    }else{
+      this.partida.primeraPartida = this.formularioDinamico.get('ganador').value;
     }
 
     this.partida.fecha = this.formularioDinamico.get('fecha').value;

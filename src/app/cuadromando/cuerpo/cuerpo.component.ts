@@ -1,3 +1,4 @@
+import { Jugador } from './../../model/jugador';
 import { Partida } from './../../model/partida';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Juego } from 'src/app/model/juego';
@@ -26,7 +27,7 @@ export class CuerpoComponent implements OnInit, OnDestroy{
   puntosMaxAnioActual = 0;
   mes: string;
   anio: string;
-
+  jugadorRecord: Jugador;
   subscriptionNombre: Subscription;
   subscriptionMes: Subscription;
 
@@ -47,6 +48,7 @@ export class CuerpoComponent implements OnInit, OnDestroy{
             this.partidasGanadas = 0;
           }
         });
+        this.servicio.getRecordsJuego(nombre).subscribe(j => this.jugadorRecord = j);
       }
     });
     this.subscriptionMes = this.mensajeria.getMes()

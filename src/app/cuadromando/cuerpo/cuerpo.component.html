@@ -164,3 +164,24 @@
       </div>
     </div>
   </div>
+  <div class="row ml-2 mr-2 mt-2">
+    <div class="col border rounded mx-auto">
+      <h3 class="text-center">Records</h3>
+      <div *ngIf="juego!=undefined"  class="card-deck mx-auto">
+        <div class="card text-white bg-primary mb-3" >
+          <div class="row no-gutters">
+            <div class="col-md-1">
+              <img src="assets/img/icono_pv.jpg" class="card-img" >
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <span class="text-center">
+                  <h2>{{jugadorRecord.nombre}} {{jugadorRecord.puntosJugador}} puntos</h2>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
