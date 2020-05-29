@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card"  >
+
+    <div class="card-body mx-auto" >
+      <h5 class="card-title text-center">Estadisticas</h5>
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr class="text-center">
+            <th>Nombre</th>
+            <th>Partidas</th>
+            <th>Ganadas</th>
+            <th>%</th>
+            <th>Media</th>
+            <th>Max</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stats of estadisticas | paginate: { id: 'pgEstadisticasPersoanles',
+          itemsPerPage: pageSize,
+          currentPage: p
+          }"    class="text-center">
+            <td>{{stats.juego}}</td>
+            <td>{{stats.partidas}}</td>
+            <td>{{stats.victorias}}</td>
+            <td>{{stats.pctVictorias}}</td>
+            <td>{{stats.puntuacionMaxima}}</td>
+            <td>{{stats.puntuacionMedia}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls id="pgEstadisticasPersoanles" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

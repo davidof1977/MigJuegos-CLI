@@ -22,6 +22,7 @@ export class CrearPartidasComponent implements OnInit {
   submitted = false;
   formularioDinamico: FormGroup;
   suscripcion: Subscription;
+  nombres: string[];
 
   constructor(private ruta: ActivatedRoute,
               private servicio: JuegosServiceService,
@@ -64,6 +65,7 @@ export class CrearPartidasComponent implements OnInit {
     event.preventDefault();
     const jugador = this.fb.group({
       nombre: new FormControl('', [Validators.required]),
+      lista: new FormControl(''),
       puntosJugador: new FormControl('', [Validators.required])
     });
     this.getFormularioDinamico.push(jugador);
@@ -73,8 +75,9 @@ export class CrearPartidasComponent implements OnInit {
     .subscribe(value => {
       if (value !== ''){
         this.servicio.getJugadores('.*' + value + '.*').subscribe(j => {
-          if (j.length === 1){
-            jugador.get('nombre').setValue(j[0]);
+          if (j.length > 1){
+            this.nombres = j;
+            //jugador.get('nombre').setValue(j[0]);
           }
         });
       }
@@ -98,6 +101,13 @@ export class CrearPartidasComponent implements OnInit {
 
   onBlurEvento(){
     this.suscripcion.unsubscribe();
+  }
+
+  dessuscribirse(event){
+    if (event.keyCode === 8){
+
+    }
+
   }
 
   guardarPartida(){

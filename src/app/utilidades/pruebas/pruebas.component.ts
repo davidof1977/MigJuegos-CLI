@@ -1,6 +1,7 @@
+import { JuegosServiceService } from 'src/app/services/juegos-service.service';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pruebas',
@@ -14,17 +15,36 @@ export class PruebasComponent implements OnInit {
   textoCopiado: string;
   cajaTexto: FormControl;
   numero: number;
+  nombres: string[];
+  suscripcion: Subscription;
+  jugador: FormControl;
+  seleccionado: string;
 
-  constructor() {
+  constructor(private servicio: JuegosServiceService) {
     this.numero = 0;
    }
 
   ngOnInit(): void {
   this.cajaTexto = new FormControl('');
   this.cajaTexto.valueChanges.pipe().subscribe(dato => this.textoCopiado = dato);
-
+  this.jugador = new FormControl('');
+  this.suscripcion = this.jugador.valueChanges
+  .pipe()
+  .subscribe(value => {
+    if (value !== ''){
+      this.servicio.getJugadores('.*' + value + '.*').subscribe(j => {
+        if (j.length > 1){
+          this.nombres = j;
+        }
+      });
+    }
+  });
   this.eventoRuedaRaton();
   this.eventoMouseMove();
+}
+
+valorSeleccionado(env){
+  console.log(this.jugador.value);
 }
 
 eventoMouseMove(){

@@ -1,3 +1,4 @@
+import { EstadisiticasPersonales } from './../model/estadisticasPersonales';
 import { Jugador } from './../model/jugador';
 import { EstadisiticasJuego } from './../model/estadisticasJuego';
 import { Juego } from './../model/juego';
@@ -104,6 +105,11 @@ export class JuegosServiceService {
   getEstadisticasJugadores(juego: string){
     const api = 'juegos/';
     return this.http.get<EstadisiticasJuego[]>(this.url + '/' + api + '/' + juego + '/estadisticas');
+  }
+
+  getEstadisticasPersonales(){
+    const api = 'juegos/estadisticas/personales';
+    return this.http.get<EstadisiticasPersonales[]>(this.url + '/' + api);
   }
 
   getRecordsJuego(juego: string){

@@ -21,7 +21,7 @@ export class EditarComponent implements OnInit {
 
   estadisticasJuego: EstadisiticasJuego[];
   p = 1;
-  pageSize = 5;
+  pageSize = 10;
 
   constructor(private router: Router, private servicio: JuegosServiceService,
               private ruta: ActivatedRoute) { }

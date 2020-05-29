@@ -7,4 +7,12 @@
   </h1>
   <input type="text" name="search-box" [formControl]="cajaTexto" >
   <p>{{textoCopiado}}</p>
+  <div>
+    <input type="text"  list="nombres" [formControl]="jugador" />
+    <datalist  id="nombres">
+      <option *ngFor="let nombre of nombres" [value]="nombre"></option>
+    </datalist>
+    <input type="button" value="boton" (click)="valorSeleccionado($event)" />
+  </div>
+
 </div>

@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './utilidades/toast/toast.component';
 import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
 import { DetallePartidaComponent } from './partidas/detalle-partida/detalle-partida.component';
+import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localeES, 'es');
     PieComponent,
     ToastComponent,
     PruebasComponent,
-    DetallePartidaComponent
+    DetallePartidaComponent,
+    EstadisticasPersonalesComponent
   ],
   imports: [
     BrowserModule,

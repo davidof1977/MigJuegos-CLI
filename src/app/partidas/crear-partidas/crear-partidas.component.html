@@ -17,7 +17,7 @@
                         </div>
                       <div class="form-group  col-6">
                           <label>Puntos de victoria:</label>
-                          <input type="text" formControlName="puntos" name="pv" class="form control" >
+                          <input type="text" (keyup)="dessuscribirse($event)" formControlName="puntos" name="pv" class="form control" >
                           <small id="nombreHelp" *ngIf="formularioDinamico.get('puntos').hasError('required') && formularioDinamico.touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
                       <div class="form-groug  col-sm-11 mx-auto ">
@@ -46,8 +46,11 @@
                   <div [formGroup]="jugadorNuevo" class="form-row ">
                       <div class="form-group col-6 ">
                           <label>Nombre</label>
-                          <input type="text" formControlName="nombre" class="form-control"
+                          <input type="text" list="nombres" formControlName="nombre" class="form-control"
                             (blur) = "onBlurEvento()" />
+                            <datalist  id="nombres" formControlName="lista">
+                              <option *ngFor="let nombre of nombres" [value]="nombre"></option>
+                            </datalist>
                             <small id="nombreHelp" *ngIf="jugadorNuevo.get('nombre').hasError('required') && jugadorNuevo.get('nombre').touched" class="text-danger">Este campo es obligatorio.</small>
                       </div>
                       <div class="form-group col-6">
