@@ -1,7 +1,9 @@
+import { HotList } from './../../model/HotList';
 import { JuegosServiceService } from 'src/app/services/juegos-service.service';
 import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pruebas',
@@ -19,8 +21,9 @@ export class PruebasComponent implements OnInit {
   suscripcion: Subscription;
   jugador: FormControl;
   seleccionado: string;
-
-  constructor(private servicio: JuegosServiceService) {
+  hotList: HotList[];
+  mensajeError;
+  constructor(private servicio: JuegosServiceService, private sanitazer: DomSanitizer) {
     this.numero = 0;
    }
 
@@ -28,6 +31,12 @@ export class PruebasComponent implements OnInit {
   this.cajaTexto = new FormControl('');
   this.cajaTexto.valueChanges.pipe().subscribe(dato => this.textoCopiado = dato);
   this.jugador = new FormControl('');
+  this.servicio.getMensajeError().subscribe(m =>this.mensajeError = this.sanitazer.bypassSecurityTrustHtml(m.description));
+  this.servicio.getTheHotListBgg().subscribe(lista => {
+    this.hotList = lista;
+    console.log(lista);
+    this.hotList.forEach((elemento) => console.log(elemento));
+  });
   this.suscripcion = this.jugador.valueChanges
   .pipe()
   .subscribe(value => {

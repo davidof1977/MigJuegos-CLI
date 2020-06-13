@@ -7,6 +7,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Partida } from '../model/partida';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs';
+import { ErrorPruebas } from '../model/errorPruebas';
+import { HotList } from '../model/HotList';
+import { BggGame } from '../model/bggGame';
 
 @Injectable({
   providedIn: 'root'
@@ -116,4 +119,32 @@ export class JuegosServiceService {
     const api = 'juegos/';
     return this.http.get<Jugador>(this.url + '/' + api + '/' + juego + '/records');
   }
+
+  getJuegosDistintosMes(mes: number){
+    const api = 'juegos';
+    return this.http.get<number>(this.url + '/' + api + '/partidas/distintos/mes/' + mes);
+  }
+
+  getJuegosDistintosAnio(anio: number){
+    const api = 'juegos';
+    return this.http.get<number>(this.url + '/' + api + '/partidas/distintos/anio/' + anio);
+  }
+
+  getMensajeError(){
+    const api = 'juegos';
+    return this.http.get<ErrorPruebas>(this.url + '/' + api + '/errorpruebas');
+  }
+
+  getTheHotListBgg(){
+    const api = 'http://bgg-json.azurewebsites.net/hot';
+    return this.http.get<HotList[]>(api);
+  }
+
+  getBggGame(id: number){
+    console.log(id);
+
+    const api = '	http://bgg-json.azurewebsites.net/thing';
+    return this.http.get<BggGame>(api + '/' + id);
+  }
+
 }

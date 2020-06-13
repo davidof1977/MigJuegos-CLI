@@ -27,6 +27,8 @@ import { ToastComponent } from './utilidades/toast/toast.component';
 import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
 import { DetallePartidaComponent } from './partidas/detalle-partida/detalle-partida.component';
 import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
+import { HotnessComponent } from './bgg/hotness/hotness.component';
+import { DetalleJuegoComponent } from './bgg/detalle-juego/detalle-juego.component';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
@@ -47,7 +49,9 @@ registerLocaleData(localeES, 'es');
     ToastComponent,
     PruebasComponent,
     DetallePartidaComponent,
-    EstadisticasPersonalesComponent
+    EstadisticasPersonalesComponent,
+    HotnessComponent,
+    DetalleJuegoComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,8 @@ export class EstadisticasComponent implements OnInit {
   numVictoriasAnioActual: number;
   numJuegosNuevosMes: number;
   numJuegosNuevosAnio: number;
+  numJuegosDistintosMes: number;
+  numJuegosDistintosAnio: number;
 
   constructor(private servicio: JuegosServiceService) { }
 
@@ -30,6 +32,8 @@ export class EstadisticasComponent implements OnInit {
     this.servicio.getJuegosSeguimiento().subscribe(data => this.numJuegosSeguimiento = data.length);
     this.servicio.getTodasPartidas().subscribe(data => this.numPartidas = data.length);
     this.servicio.getPartidasGanadas().subscribe(data => this.numVictorias = data.length);
+    this.servicio.getJuegosDistintosMes(new Date().getMonth() + 1).subscribe(data => this.numJuegosDistintosMes = data);
+    this.servicio.getJuegosDistintosAnio(new Date().getFullYear()).subscribe(data => this.numJuegosDistintosAnio = data);
     this.servicio.getPartidasMes(new Date().getMonth() + 1).subscribe(data => {
       this.numPartidasUltimoMes = data.length;
       this.numVictoriasUltimoMes = data.filter(p => p.ganador).length;

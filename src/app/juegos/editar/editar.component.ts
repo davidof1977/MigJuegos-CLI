@@ -18,6 +18,8 @@ export class EditarComponent implements OnInit {
   partidasJugadas = 0;
   partidasGanadas = 0;
   maximaPuntuacion = 0;
+  ultimaPartidaJugada;
+  primeraPartidaJugada;
 
   estadisticasJuego: EstadisiticasJuego[];
   p = 1;
@@ -32,9 +34,13 @@ export class EditarComponent implements OnInit {
       this.servicio.getJuego(this.nombreJuego).subscribe(j => {
         this.juego = j;
         if (j.partidas !== null){
+
           this.partidasGanadas = j.partidas.filter(p => p.ganador === true).length;
           this.partidasJugadas = j.partidas.length;
           this.maximaPuntuacion = j.partidas.reduce((a, c) => a.puntos > c.puntos ? a : c).puntos;
+          this.primeraPartidaJugada = j.partidas.sort((p1, p2) =>  new Date(p2.fecha).getTime() - new Date(p1.fecha).getTime()).pop().fecha;
+          this.ultimaPartidaJugada = j.partidas.sort((p1, p2) =>  new Date(p1.fecha).getTime() - new Date(p2.fecha).getTime()).pop().fecha;
+
         }
       });
       this.servicio.getEstadisticasJugadores(this.nombreJuego).subscribe(e => this.estadisticasJuego = e);

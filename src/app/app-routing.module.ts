@@ -1,3 +1,4 @@
+import { HotnessComponent } from './bgg/hotness/hotness.component';
 import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
 import { DetallePartidaComponent } from './partidas/detalle-partida/detalle-partida.component';
 import { PrincipalComponent } from './cuadromando/principal/principal.component';
@@ -12,6 +13,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListarPartidasComponent } from './partidas/listar-partidas/listar-partidas.component';
 import { CrearPartidasComponent } from './partidas/crear-partidas/crear-partidas.component';
 import { PruebasComponent } from './utilidades/pruebas/pruebas.component';
+import { DetalleJuegoComponent } from './bgg/detalle-juego/detalle-juego.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path: 'pruebas', component: PruebasComponent},
   {path: 'detallePartida', component: DetallePartidaComponent},
   {path: 'estadisticasPersonales', component: EstadisticasPersonalesComponent},
+  {path: 'hotness', component: HotnessComponent},
+  {path: 'detalleJuegoBGG/:idJuego', component: DetalleJuegoComponent},
   { path: '**', redirectTo: 'estadisticas', pathMatch: 'full' }
 ];
 

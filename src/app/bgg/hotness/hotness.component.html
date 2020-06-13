@@ -1,0 +1,18 @@
+<div class="container">
+  <table>
+    <tr *ngFor="let fila of filas">
+      <td *ngFor="let i = index let hot of hotlist">
+        <div class="card" style="width: 15rem;" >
+          <div class="d-flex justify-content-center mt-2" >
+            <img [src]=hot.thumbnail class="card-img-top img-fluid w-75 h-75" />
+          </div>
+          <div class="card-body mx-auto" >
+            <h5 class="card-title text-center"><a class="nav-link" [routerLink]="['/detalleJuegoBGG', hot.gameId]" >{{hot.name}}</a></h5>
+            <h6 class="card-title text-center">{{hot.yearPublished}}</h6>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</div>
