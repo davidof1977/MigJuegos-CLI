@@ -1,3 +1,4 @@
+import { ListaJuegosUsuarioComponent } from './bgg/lista-juegos-usuario/lista-juegos-usuario.component';
 import { HotnessComponent } from './bgg/hotness/hotness.component';
 import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
 import { DetallePartidaComponent } from './partidas/detalle-partida/detalle-partida.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'estadisticasPersonales', component: EstadisticasPersonalesComponent},
   {path: 'hotness', component: HotnessComponent},
   {path: 'detalleJuegoBGG/:idJuego', component: DetalleJuegoComponent},
+  {path: 'listasJuegosAmigosBGG', component: ListaJuegosUsuarioComponent},
   { path: '**', redirectTo: 'estadisticas', pathMatch: 'full' }
 ];
 

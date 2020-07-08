@@ -14,10 +14,14 @@ export class DetalleJuegoComponent implements OnInit {
   constructor(private ruta: ActivatedRoute, private servicio: JuegosServiceService) { }
 
   idJuego: string;
-  bggJuego: BggGame;
+  bggJuego: any;
   ngOnInit(): void {
     this.ruta.paramMap.subscribe(params => this.idJuego = params.get('idJuego'));
-    this.servicio.getBggGame(+this.idJuego).subscribe(juego => this.bggJuego = juego);
+    this.servicio.getBggGame(+this.idJuego).subscribe(juego => {
+      this.bggJuego = juego;
+      console.log(this.bggJuego.name);
+    });
+
 
   }
 

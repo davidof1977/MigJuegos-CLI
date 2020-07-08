@@ -38,6 +38,8 @@ export class CuerpoComponent implements OnInit, OnDestroy{
         this.partidasGanadas = 0;
         this.servicio.getJuego(nombre).subscribe(j => {
           this.juego = j;
+          console.log(this.juego);
+
           if (j.partidas !== null && j.partidas.length > 0){
             j.partidas.filter(p => p.ganador === true).forEach(pg => this.partidasGanadas = this.partidasGanadas + 1);
             this.partidasJugadas = j.partidas.length;
@@ -52,7 +54,7 @@ export class CuerpoComponent implements OnInit, OnDestroy{
       }
     });
     this.subscriptionMes = this.mensajeria.getMes()
-    .pipe(debounceTime(200))
+    .pipe(debounceTime(500))
     .subscribe(anioMes => {
       this.puntosMaxMesActual = 0;
       this.partidasGanadasMesActual = 0;
@@ -63,7 +65,7 @@ export class CuerpoComponent implements OnInit, OnDestroy{
       this.anio = anioMes.substring(0, 4);
       const mesNumerico = anioMes.substring(5, 7);
       this.mes = this.getNombreMes(mesNumerico);
-      if (this.juego.partidas !== null){
+      if (this.juego.partidas !== undefined){
         this.juego.partidas.forEach(p => {
           if (p.fecha.substring(0, 4) === this.anio && p.fecha.substring(5, 7) === mesNumerico){
             this.partidasJugadasMesActual = this.partidasJugadasMesActual + 1;
@@ -108,7 +110,6 @@ getNombreMes(mesNumerico: string){
   const monthNames = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
   'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 ];
-  console.log(mesNumerico);
 
   return monthNames[+mesNumerico];
 }

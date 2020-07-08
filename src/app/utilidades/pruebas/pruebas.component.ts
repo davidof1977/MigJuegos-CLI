@@ -21,22 +21,24 @@ export class PruebasComponent implements OnInit {
   suscripcion: Subscription;
   jugador: FormControl;
   seleccionado: string;
-  hotList: HotList[];
+  xmlResults: any;
   mensajeError;
   constructor(private servicio: JuegosServiceService, private sanitazer: DomSanitizer) {
     this.numero = 0;
    }
-
   ngOnInit(): void {
   this.cajaTexto = new FormControl('');
   this.cajaTexto.valueChanges.pipe().subscribe(dato => this.textoCopiado = dato);
   this.jugador = new FormControl('');
-  this.servicio.getMensajeError().subscribe(m =>this.mensajeError = this.sanitazer.bypassSecurityTrustHtml(m.description));
-  this.servicio.getTheHotListBgg().subscribe(lista => {
-    this.hotList = lista;
-    console.log(lista);
-    this.hotList.forEach((elemento) => console.log(elemento));
+  this.servicio.getXMLBggUsersCollection('lostrikis').subscribe(xml => {
+    console.log(xml);
+    const parseString = require('xml2js').parseString;
+    parseString(xml, (err, result) => {
+    this.xmlResults = result;
+    console.dir(result);
+    });
   });
+//  this.servicio.getMensajeError().subscribe(m => this.mensajeError = this.sanitazer.bypassSecurityTrustHtml(m.description));
   this.suscripcion = this.jugador.valueChanges
   .pipe()
   .subscribe(value => {

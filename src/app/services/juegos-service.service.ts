@@ -3,13 +3,14 @@ import { Jugador } from './../model/jugador';
 import { EstadisiticasJuego } from './../model/estadisticasJuego';
 import { Juego } from './../model/juego';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Partida } from '../model/partida';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs';
 import { ErrorPruebas } from '../model/errorPruebas';
 import { HotList } from '../model/HotList';
 import { BggGame } from '../model/bggGame';
+import { Items } from '../model/items';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class JuegosServiceService {
 
   constructor(private http: HttpClient) { }
 
-  url = 'http://localhost:9083/misjuegos/api';
-
+  // url = 'http://localhost:9083/misjuegos/api';
+  url = 'https://mis-juegos-davidof1977.herokuapp.com/misjuegos/api';
   getJuegos(){
     const api = 'juegos';
     return this.http.get<Juego[]>(this.url + '/' + api);
@@ -116,7 +117,7 @@ export class JuegosServiceService {
   }
 
   getRecordsJuego(juego: string){
-    const api = 'juegos/';
+    const api = 'juegos';
     return this.http.get<Jugador>(this.url + '/' + api + '/' + juego + '/records');
   }
 
@@ -144,7 +145,15 @@ export class JuegosServiceService {
     console.log(id);
 
     const api = '	http://bgg-json.azurewebsites.net/thing';
-    return this.http.get<BggGame>(api + '/' + id);
+    return this.http.get<any>(api + '/' + id);
+  }
+
+  getXMLBggUsersCollection(usuario: string){
+    const api = '	https://www.boardgamegeek.com/xmlapi/collection/';
+    const options: object = {
+      responseType: 'text' as const,
+    };
+    return this.http.get<any>(api + usuario + '?own=1', options);
   }
 
 }

@@ -29,6 +29,7 @@ import { DetallePartidaComponent } from './partidas/detalle-partida/detalle-part
 import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
 import { HotnessComponent } from './bgg/hotness/hotness.component';
 import { DetalleJuegoComponent } from './bgg/detalle-juego/detalle-juego.component';
+import { ListaJuegosUsuarioComponent } from './bgg/lista-juegos-usuario/lista-juegos-usuario.component';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
@@ -51,7 +52,8 @@ registerLocaleData(localeES, 'es');
     DetallePartidaComponent,
     EstadisticasPersonalesComponent,
     HotnessComponent,
-    DetalleJuegoComponent
+    DetalleJuegoComponent,
+    ListaJuegosUsuarioComponent
   ],
   imports: [
     BrowserModule,
