@@ -19,8 +19,8 @@ export class JuegosServiceService {
 
   constructor(private http: HttpClient) { }
 
-  // url = 'http://localhost:9083/misjuegos/api';
-  url = 'https://mis-juegos-davidof1977.herokuapp.com/misjuegos/api';
+   url = 'http://localhost:9083/misjuegos/api';
+  // url = 'https://mis-juegos-davidof1977.herokuapp.com/misjuegos/api';
   getJuegos(){
     const api = 'juegos';
     return this.http.get<Juego[]>(this.url + '/' + api);
@@ -156,4 +156,8 @@ export class JuegosServiceService {
     return this.http.get<any>(api + usuario + '?own=1', options);
   }
 
+  validarUsuario(usuario: string){
+    const api = 'usuarios';
+    return this.http.get<boolean>(this.url + '/' + api + '/' + usuario);
+  }
 }

@@ -1,6 +1,8 @@
+import { ServicioMensajeriaService } from 'src/app/services/servicio-mensajeria.service';
 import { JuegosServiceService } from './../services/juegos-service.service';
 import { Component, OnInit } from '@angular/core';
 import { getLocaleDayNames } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-estadisticas',
@@ -22,10 +24,26 @@ export class EstadisticasComponent implements OnInit {
   numJuegosNuevosAnio: number;
   numJuegosDistintosMes: number;
   numJuegosDistintosAnio: number;
+  subscriptionUsuario: Subscription;
 
-  constructor(private servicio: JuegosServiceService) { }
+  constructor(private servicio: JuegosServiceService, private mensajeria: ServicioMensajeriaService) { }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('usuario') ===  null){
+
+    }else{
+      this.cargarEstadisticas();
+    }
+    this.subscriptionUsuario = this.mensajeria.getUsuario().subscribe(nombre => {
+      if (nombre) {
+        this.cargarEstadisticas();
+      }
+    });
+
+
+  }
+
+  cargarEstadisticas(){
     this.numVictoriasUltimoMes = 0;
     this.servicio.getJuegosEnColeccion().subscribe(data => this.numJuegosColeccion = data.length);
     this.servicio.getJuegosListaDeseos().subscribe(data => this.numJuegosDeseos = data.length);
@@ -44,8 +62,8 @@ export class EstadisticasComponent implements OnInit {
       this.numVictoriasAnioActual = data.filter(p => p.ganador).length;
       this.numJuegosNuevosAnio = data.filter(p => p.primeraPartida).length;
     });
-
   }
+
   navegarColeccion(){
     localStorage.setItem('origenPeticion', 'listadoColeccion');
   }

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UsuarioService } from './../services/usuario.service';
+import { ServicioMensajeriaService } from 'src/app/services/servicio-mensajeria.service';
+import { JuegosServiceService } from 'src/app/services/juegos-service.service';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,9 +12,19 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private route: Router) { }
-
+  constructor(private route: Router, private servicio: JuegosServiceService,
+              private mensajeria: ServicioMensajeriaService, private servicioUsuario: UsuarioService) { }
+  usuario: string;
+  subscriptionUsuario: Subscription;
   ngOnInit(): void {
+    if (sessionStorage.getItem('usuario') !== null){
+      this.usuario = sessionStorage.getItem('usuario');
+    }
+    this.subscriptionUsuario = this.mensajeria.getUsuario().subscribe(nombre => {
+      if (nombre) {
+        this.usuario = nombre;
+      }
+    });
   }
 
   navegarColeccion(){
@@ -35,6 +49,12 @@ export class MenuComponent implements OnInit {
 
   navegarNuevoJuego(){
     localStorage.removeItem('nombreJuego');
+  }
+
+  cerrarSesion(){
+    this.servicioUsuario.logout();
+    this.usuario = null;
+    this.route.navigate(['/login']);
   }
 
 }

@@ -8,4 +8,5 @@ export class Juego{
   enListaDeseos: boolean;
   partidas: Partida[];
   img: string;
+  usuario: string;
 }

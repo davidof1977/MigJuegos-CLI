@@ -38,6 +38,7 @@ export class CrearComponent implements OnInit {
     if(!this.formGrupo.invalid){
       this.juego.img = 'assets/img/' + this.formGrupo.get('rutaImg').value;
       this.juego.nombre = this.formGrupo.get('nombre').value;
+      this.juego.usuario = sessionStorage.getItem('usuario');
       if (this.formGrupo.get('lista').value === 'coleccion'){
         this.juego.enColeccion = true;
       }

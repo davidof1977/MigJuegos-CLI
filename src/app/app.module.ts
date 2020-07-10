@@ -1,9 +1,12 @@
+import { AuthGuardService } from './services/auth-guard.service';
+import { UsuarioService } from './services/usuario.service';
+import { HeaderInterceptorService } from './services/header-interceptor.service';
 import { BuscarComponent } from './juegos/buscar/buscar.component';
 import { JuegosServiceService } from './services/juegos-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +33,8 @@ import { EstadisticasPersonalesComponent } from './estadisticas-personales/estad
 import { HotnessComponent } from './bgg/hotness/hotness.component';
 import { DetalleJuegoComponent } from './bgg/detalle-juego/detalle-juego.component';
 import { ListaJuegosUsuarioComponent } from './bgg/lista-juegos-usuario/lista-juegos-usuario.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
@@ -53,7 +58,9 @@ registerLocaleData(localeES, 'es');
     EstadisticasPersonalesComponent,
     HotnessComponent,
     DetalleJuegoComponent,
-    ListaJuegosUsuarioComponent
+    ListaJuegosUsuarioComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,17 @@ registerLocaleData(localeES, 'es');
     NgxPaginationModule,
     NgbModule
   ],
-  providers: [JuegosServiceService, ServicioMensajeriaService,  { provide: LOCALE_ID, useValue: 'es-ES' }, ],
+  providers: [JuegosServiceService,
+    ServicioMensajeriaService,
+    UsuarioService,
+    AuthGuardService,
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptorService,
+      multi: true // Add this line when using multiple interceptors.
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

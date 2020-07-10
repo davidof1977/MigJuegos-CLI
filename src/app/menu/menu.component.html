@@ -50,6 +50,14 @@
           </div>
         </div>
       </li>
+      <li>
+         <label id="usu" *ngIf="usuario !== undefined">{{usuario}}</label>
+      </li>
+      <li>
+        <button (hidden)="usuario === undefined" class="btn btn-light" type="button"  (click)="cerrarSesion()" >
+          cerrar sesion
+        </button>
+     </li>
     </ul>
   </div>
   <a class="navbar-brand" href="/estadisticasPersonales"><img src="assets/img/icoPlayer.png" class="img-fluid img-thumbnail" style="max-width:50px;"/></a>

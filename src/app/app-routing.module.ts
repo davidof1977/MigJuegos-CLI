@@ -1,3 +1,6 @@
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 import { ListaJuegosUsuarioComponent } from './bgg/lista-juegos-usuario/lista-juegos-usuario.component';
 import { HotnessComponent } from './bgg/hotness/hotness.component';
 import { EstadisticasPersonalesComponent } from './estadisticas-personales/estadisticas-personales.component';
@@ -18,22 +21,25 @@ import { DetalleJuegoComponent } from './bgg/detalle-juego/detalle-juego.compone
 
 
 const routes: Routes = [
-  {path: 'listarJuegos', component: ListarComponent},
-  {path: 'nuevoJuego', component: CrearComponent},
-  {path: 'editarJuego/:juego', component: EditarComponent},
-  {path: 'listarPartidas/:juego', component: ListarPartidasComponent},
-  {path: 'crearPartidas', component: CrearPartidasComponent},
-  {path: 'listarPartidas', component: ListarPartidasComponent},
-  {path: 'buscarJuego', component: BuscarComponent},
-  {path: 'estadisticas', component: EstadisticasComponent},
-  {path: 'cuadromando', component: PrincipalComponent},
-  {path: 'pruebas', component: PruebasComponent},
-  {path: 'detallePartida', component: DetallePartidaComponent},
-  {path: 'estadisticasPersonales', component: EstadisticasPersonalesComponent},
-  {path: 'hotness', component: HotnessComponent},
-  {path: 'detalleJuegoBGG/:idJuego', component: DetalleJuegoComponent},
-  {path: 'listasJuegosAmigosBGG', component: ListaJuegosUsuarioComponent},
-  { path: '**', redirectTo: 'estadisticas', pathMatch: 'full' }
+  {path: 'listarJuegos', component: ListarComponent, canActivate: [AuthGuardService] },
+  {path: 'nuevoJuego', component: CrearComponent, canActivate: [AuthGuardService]},
+  {path: 'editarJuego/:juego', component: EditarComponent, canActivate: [AuthGuardService]},
+  {path: 'listarPartidas/:juego', component: ListarPartidasComponent, canActivate: [AuthGuardService]},
+  {path: 'crearPartidas', component: CrearPartidasComponent, canActivate: [AuthGuardService]},
+  {path: 'listarPartidas', component: ListarPartidasComponent, canActivate: [AuthGuardService]},
+  {path: 'buscarJuego', component: BuscarComponent, canActivate: [AuthGuardService]},
+  {path: '', component: EstadisticasComponent, canActivate: [AuthGuardService]},
+  {path: 'cuadromando', component: PrincipalComponent, canActivate: [AuthGuardService]},
+  {path: 'pruebas', component: PruebasComponent, canActivate: [AuthGuardService]},
+  {path: 'detallePartida', component: DetallePartidaComponent, canActivate: [AuthGuardService]},
+  {path: 'estadisticasPersonales', component: EstadisticasPersonalesComponent, canActivate: [AuthGuardService]},
+  {path: 'hotness', component: HotnessComponent, canActivate: [AuthGuardService]},
+  {path: 'detalleJuegoBGG/:idJuego', component: DetalleJuegoComponent, canActivate: [AuthGuardService]},
+  {path: 'listasJuegosAmigosBGG', component: ListaJuegosUsuarioComponent, canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
+
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
