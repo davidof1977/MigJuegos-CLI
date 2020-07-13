@@ -17,8 +17,8 @@ export class MenuComponent implements OnInit {
   usuario: string;
   subscriptionUsuario: Subscription;
   ngOnInit(): void {
-    if (sessionStorage.getItem('usuario') !== null){
-      this.usuario = sessionStorage.getItem('usuario');
+    if (localStorage.getItem('usuario') !== null){
+      this.usuario = localStorage.getItem('usuario');
     }
     this.subscriptionUsuario = this.mensajeria.getUsuario().subscribe(nombre => {
       if (nombre) {

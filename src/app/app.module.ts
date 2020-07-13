@@ -1,3 +1,4 @@
+import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UsuarioService } from './services/usuario.service';
 import { HeaderInterceptorService } from './services/header-interceptor.service';
@@ -79,6 +80,11 @@ registerLocaleData(localeES, 'es');
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeaderInterceptorService,
+      multi: true // Add this line when using multiple interceptors.
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true // Add this line when using multiple interceptors.
     },
   ],

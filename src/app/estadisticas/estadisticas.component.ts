@@ -29,18 +29,16 @@ export class EstadisticasComponent implements OnInit {
   constructor(private servicio: JuegosServiceService, private mensajeria: ServicioMensajeriaService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('usuario') ===  null){
-
-    }else{
+    if (localStorage.getItem('jwt') !==  null){
       this.cargarEstadisticas();
+    }else{
+
     }
     this.subscriptionUsuario = this.mensajeria.getUsuario().subscribe(nombre => {
       if (nombre) {
         this.cargarEstadisticas();
       }
     });
-
-
   }
 
   cargarEstadisticas(){

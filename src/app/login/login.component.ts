@@ -1,8 +1,10 @@
+import { Usuario } from './../model/usuario';
 import { ServicioMensajeriaService } from 'src/app/services/servicio-mensajeria.service';
 import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formGrupo: FormGroup;
-  usuario: string;
   returnUrl: string;
 
   constructor(private router: Router, private route: ActivatedRoute,
@@ -32,22 +33,22 @@ export class LoginComponent implements OnInit {
 
   login(event: Event){
     event.preventDefault();
-    if(!this.formGrupo.invalid){
+    if (!this.formGrupo.invalid){
       const nombre = this.formGrupo.get('nombre').value;
       const password = this.formGrupo.get('password').value;
-      this.servicio.validarUsuario(nombre, password).subscribe(valido => {
-        if (valido){
-          this.usuario = nombre;
-          sessionStorage.setItem('usuario', this.usuario);
+      const usuario = new Usuario();
+      usuario.nombre = nombre;
+      usuario.password = password;
+      this.servicio.validarUsuario(usuario).subscribe(token => {
+          this.servicio.loggin(token, nombre);
+          this.mensajeria.sendUsuario(nombre);
           this.router.navigate([this.returnUrl]);
-          this.mensajeria.sendUsuario(this.usuario);
-        }else{
-          alert('Usuario o password incorrectos');
-        }
+      },
+      error => {
+        alert('Usuario o password incorrectos');
       });
     }else{
       this.formGrupo.markAllAsTouched();
     }
   }
-
 }

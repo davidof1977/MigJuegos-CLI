@@ -24,8 +24,7 @@ export class RegistroComponent implements OnInit {
     this.formGrupo = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      rpassword: new FormControl('', [Validators.required]),
-      email: new FormControl('')
+      rpassword: new FormControl('', [Validators.required])
     });
   }
 
@@ -57,7 +56,6 @@ export class RegistroComponent implements OnInit {
     usuario = new Usuario();
     usuario.nombre = this.formGrupo.get('nombre').value;
     usuario.password = this.formGrupo.get('password').value;
-    usuario.email = this.formGrupo.get('email').value;
 
     this.servicio.registrarUsuario(usuario)
         .pipe(first())

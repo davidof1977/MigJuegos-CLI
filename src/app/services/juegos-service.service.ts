@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { EstadisiticasPersonales } from './../model/estadisticasPersonales';
 import { Jugador } from './../model/jugador';
 import { EstadisiticasJuego } from './../model/estadisticasJuego';
@@ -19,8 +20,7 @@ export class JuegosServiceService {
 
   constructor(private http: HttpClient) { }
 
-   url = 'http://localhost:9083/misjuegos/api';
-  // url = 'https://mis-juegos-davidof1977.herokuapp.com/misjuegos/api';
+  url = environment.baseUrl + '/api';
   getJuegos(){
     const api = 'juegos';
     return this.http.get<Juego[]>(this.url + '/' + api);
@@ -107,7 +107,7 @@ export class JuegosServiceService {
   }
 
   getEstadisticasJugadores(juego: string){
-    const api = 'juegos/';
+    const api = 'juegos';
     return this.http.get<EstadisiticasJuego[]>(this.url + '/' + api + '/' + juego + '/estadisticas');
   }
 
@@ -156,8 +156,4 @@ export class JuegosServiceService {
     return this.http.get<any>(api + usuario + '?own=1', options);
   }
 
-  validarUsuario(usuario: string){
-    const api = 'usuarios';
-    return this.http.get<boolean>(this.url + '/' + api + '/' + usuario);
-  }
 }

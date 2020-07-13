@@ -8,23 +8,15 @@ import { Observable } from 'rxjs';
 export class HeaderInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      if (true) { // e.g. if token exists, otherwise use incomming request.
-        if (sessionStorage.getItem('usuario') !== null ){
+        if (localStorage.getItem('jwt') !== null ){
           return next.handle(req.clone({
             setHeaders: {
-                usuario: sessionStorage.getItem('usuario'),
+                authorization: localStorage.getItem('jwt'),
             }
           }));
         }else{
-          return next.handle(req.clone({
-            setHeaders: {
-                usuario: '',
-            }
-          }));
-        }
-      }
-      else {
           return next.handle(req);
-      }
+        }
+
   }
 }

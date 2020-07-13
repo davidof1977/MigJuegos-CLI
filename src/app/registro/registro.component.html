@@ -20,11 +20,6 @@
           <small id="rpasswordHelp" *ngIf="formGrupo.get('rpassword').hasError('required') && formGrupo.touched || mostrarMensaje" class="text-danger">{{mensaje}}</small>
 
         </div>
-        <div class="form group">
-          <label class="form-text form control" for="nombre">Email:</label>
-          <input type="text" id="email" name="email"  class="form control" style="width: 100%;" formControlName="email">
-          <small id="emailHelp" *ngIf="formGrupo.get('email').hasError('required') && formGrupo.touched" class="text-danger">Este campo es obligatorio.</small>
-        </div>
         <div class="d-flex justify-content-center mt-3" >
           <button type="submit"  class="btn btn-success"
           [class.btn-succes]="!formGrupo.invalid"
